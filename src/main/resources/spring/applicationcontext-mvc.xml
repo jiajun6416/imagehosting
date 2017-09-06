@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/mvc 
+						http://www.springframework.org/schema/mvc/spring-mvc.xsd
+						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop.xsd	
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="com.jiajun.imagehosting.**.controller" />
+
+	<!-- 使用默认的handler映射器和handler适配器 , 注意: 自定义转换器不能取名conversionService, mvc自带了 -->
+	<mvc:annotation-driven />
+
+	<!--静态资源的映射 -->
+	<mvc:resources mapping="/**/*.js" location="/" />
+	<mvc:resources mapping="/**/*.css" location="/" />
+	<mvc:resources mapping="/**/*.png" location="/" />
+	<mvc:resources mapping="/**/*.gif" location="/" />
+
+
+	<!-- 配置SpringMVC的视图解析器 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<bean class="com.jiajun.imagehosting.common.exceptionhandler.GlobalExceptionHandler">
+		<!-- 这边只对http协议异常进行处理, ajax异常已经处理 -->
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.exception">error</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 拦截器 -->
+	<!-- <mvc:interceptors> <mvc:interceptor> <mvc:mapping path="/**"/> <bean 
+		class="com.jiajun.interceptor.ParamsInterceptor"/> </mvc:interceptor> </mvc:interceptors> -->
+
+	<!--编码设置 -->
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/html;charset=UTF-8</value>
+							<value>application/json;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+				<bean
+					class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/html;charset=UTF-8</value>
+							<value>application/json;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- /跳转页面 -->
+	<mvc:view-controller path="/" view-name="redirect:/main/index" />
+
+	<!-- 上传拦截，如最大上传值及最小上传值 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize">
+			<value>104857600</value>
+		</property>
+		<property name="maxInMemorySize">
+			<value>4096</value>
+		</property>
+		<property name="defaultEncoding">
+			<value>utf-8</value>
+		</property>
+	</bean>
+
+</beans>

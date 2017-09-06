@@ -1,0 +1,195 @@
+.user_photo_list {
+	width:100%;
+}
+.editphoto {
+	width:550px;
+	height:370px;
+	color:rgb(102,102,102);
+	margin-top:-8px;
+}
+.editphoto_t {
+	width:100%;
+	height:30px;
+	line-height:30px;
+	font-weight:bold;
+}
+.editphoto_a {
+	width:100%;
+	height:30px;
+	line-height:30px;
+	margin-top:5px;
+}
+.editphoto_ab {
+	height:60px;
+}
+.editphoto_ac {
+	position:relative;
+	z-index:666;
+}
+.editphoto_a_a {
+	width:60px;
+	text-align:right;
+	float:left;
+}
+.editphoto_a_b {
+	margin:0px 5px 0px 10px;
+	padding:0px 5px;
+	border:1px solid rgb(204,204,204);
+	border-image:none;
+	width:448px;
+	height:28px;
+	float:left;
+	background-color:rgb(248,248,248);
+}
+.editphoto_a_d {
+	margin:0px 5px 0px 10px;
+	padding:0px 5px;
+	border:1px solid rgb(204,204,204);
+	border-image:none;
+	width:448px;
+	height:28px;
+	float:left;
+	background-color:rgb(248,248,248);
+}
+.editphoto_a_bb {
+	height:58px;
+}
+.editphoto_a_b input {
+	margin:0px;
+	padding:0px;
+	border:0px currentColor;
+	border-image:none;
+	width:410px;
+	height:28px;
+	line-height:28px;
+	float:left;
+	background-color:rgb(248,248,248);
+}
+.editphoto_a_b textarea {
+	margin:5px 0px -5px;
+	padding:0px;
+	border:0px currentColor;
+	border-image:none;
+	width:100%;
+	height:32px;
+	line-height:16px;
+	overflow:hidden;
+	float:left;
+	background-color:rgb(248,248,248);
+}
+.editphoto_a_b span {
+	color:rgb(153,153,153);
+	line-height:28px;
+	font-size:12px;
+	float:right;
+}
+.editphoto_a_b_s {
+	font-size:11px;
+	vertical-align:top;
+}
+.editphoto_a_c {
+	color:rgb(255,102,0);
+	font-weight:bold;
+}
+.editphoto_a_d {
+	cursor:pointer;
+}
+.editphoto_a_d:hover {
+	border-color:rgb(0,204,0);
+}
+.editphoto_a_d_a {
+	width:410px;
+	height:28px;
+	color:rgb(51,51,51);
+	overflow:hidden;
+	float:left;
+}
+.editphoto_a_d_b {
+	background:url("/img/bg.png") no-repeat 0px -110px;
+	width:22px;
+	height:28px;
+	float:right;
+	_background-image:url(/img/bg.gif);
+}
+.editphoto_a_d_b:hover {
+	background-position:-105px -110px;
+}
+.editphoto_a_e {
+	border:1px solid rgb(0,204,0);
+	border-image:none;
+	left:70px;
+	top:29px;
+	width:458px;
+	color:rgb(102,102,102);
+	position:absolute;
+	background-color:rgb(255,255,255);
+}
+.editphoto_a_e_a {
+	width:100%;
+	overflow:auto;
+	border-bottom-color:rgb(0,204,0);
+	border-bottom-width:1px;
+	border-bottom-style:solid;
+	display:block;
+	max-height:140px;
+	_height:140px;
+	_overflow-x:hidden;
+}
+.editphoto_a_e_a label {
+	width:100%;
+	height:28px;
+	text-indent:5px;
+	overflow:hidden;
+	display:block;
+}
+.editphoto_a_e_a label:hover {
+	color:rgb(255,255,255);
+	background-color:rgb(0,153,0);
+}
+.editphoto_a_e_b {
+	padding:5px;
+	width:448px;
+	height:30px;
+	display:block;
+	background-color:rgb(236,236,236);
+}
+.editphoto_a_e_b_a {
+	margin:0px;
+	width:348px;
+}
+.editphoto_a_e_b_a input {
+	width:310px;
+}
+.editphoto_a_e_b_b {
+	width:80px;
+	height:30px;
+	margin-left:5px;
+}
+.editphoto_b {
+	margin:15px 0px 10px;
+	width:100%;
+	height:1px;
+	overflow:hidden;
+	background-color:rgb(204,204,204);
+}
+.editphoto_c {
+	margin:20px 0px 15px;
+	width:100%;
+}
+.editphoto_c input {
+	border:1px solid rgb(204,204,204);
+	border-image:none;
+	width:108px;
+	height:38px;
+	color:rgb(153,153,153);
+	line-height:38px;
+	font-weight:bold;
+	background-color:rgb(248,248,248);
+}
+.editphoto_d {
+	width:100%;
+	text-align:center;
+}
+.editphoto_d_a {
+	margin-right:20px;
+}

@@ -1,0 +1,43 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:cache="http://www.springframework.org/schema/cache" xmlns:jms="http://www.springframework.org/schema/jms"
+	xmlns:amq="http://activemq.apache.org/schema/core" xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/websocket
+				http://www.springframework.org/schema/websocket/spring-websocket.xsd
+					http://www.springframework.org/schema/mvc
+						http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+							http://www.springframework.org/schema/context
+								http://www.springframework.org/schema/context/spring-context.xsd
+									http://www.springframework.org/schema/data/mongo       
+										http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd   
+											http://www.springframework.org/schema/tx
+											http://www.springframework.org/schema/tx/spring-tx.xsd
+										http://www.springframework.org/schema/aop
+									http://www.springframework.org/schema/aop/spring-aop.xsd
+								http://www.springframework.org/schema/cache
+							http://www.springframework.org/schema/cache/spring-cache.xsd
+						http://activemq.apache.org/schema/core 
+					http://activemq.apache.org/schema/core/activemq-core.xsd
+				http://www.springframework.org/schema/jms 
+			http://www.springframework.org/schema/jms/spring-jms.xsd
+		http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- 组件扫面, 也可以使用排除controller注解 -->
+	<context:component-scan base-package="com.jiajun.imagehosting">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<bean class="com.jiajun.imagehosting.common.config.EncryPropertyPlaceholderConfigurer">
+		<property name="locations" value="classpath:config/*.properties"/>
+	</bean>
+
+</beans>

@@ -1,0 +1,356 @@
+.photo {
+	margin:6px auto 0px;
+	border:0px currentColor;
+	border-image:none;
+	width:1070px;
+	float:none;
+	background-color:rgb(248,248,248);
+	position:relative;
+}
+.photo:hover {
+	border-color:rgb(204,204,204);
+}
+.photo_l {
+	border:1px solid rgb(204,204,204);
+	border-image:none;
+	width:730px;
+	float:left;
+	background-color:rgb(255,255,255);
+}
+.photo_r {
+	padding:0px 19px 19px 0px;
+	border:1px solid rgb(204,204,204);
+	border-image:none;
+	width:318px;
+	margin-left:-1px;
+	float:right;
+	background-color:rgb(255,255,255);
+	line-height:34px;
+}
+.photo_r input {
+	line-height:25px;
+	height:25px;
+	width:209px;
+}
+.photo_r td {
+	position:relative;
+	overflow:hidden
+}
+.photo_l_t {
+	width:100%;
+	float:left;
+}
+.photo_a {
+	margin:5px;
+	width:720px;
+	text-align:center;
+	overflow:hidden;
+	float:left;
+	display:inline;
+}
+.photo_a img {
+	max-width:720px;
+}
+.photo_b {
+	padding:0px 5px 10px;
+	width:720px;
+	border-top-color:rgb(204,204,204);
+	border-top-width:1px;
+	border-top-style:solid;
+	float:left;
+}
+.photo_b_a {
+	width:100%;
+	height:33px;
+	position:relative;
+}
+.photo_b_a_nw {
+	background:url("/img/renamebg.png") no-repeat;
+	padding:35px 12px 35px 16px;
+	left:0px;
+	top:-150px;
+	width:168px;
+	height:89px;
+	color:rgb(255,255,204);
+	line-height:22px;
+	position:absolute;
+	z-index:99;
+	cursor:pointer;
+	_left:-4px;
+	_background:#fff url(/img/renamebg.gif);
+}
+.photo_b_a_a {
+	width:100%;
+	height:30px;
+	line-height:30px;
+	overflow:hidden;
+	float:left;
+}
+.photo_b_a_a span {
+	margin-right:20px;
+	float:left;
+}
+span.photo_b_a_a_l {
+	margin-right:0px;
+}
+.photo_b_a_b {
+	margin:3px 0px 0px;
+	width:100%;
+	float:left;
+}
+.photo_b_a_b span,.photo_b_a_b a.span {
+	margin-right:3px;
+	margin-left:0px;
+}
+.photo_b_a_b span.hd,.photo_b_a_b a.span {
+	background-position:-486px -166px;
+	color:#999;
+}
+.photo_b_a_b span.hd:hover,.photo_b_a_b a.span:hover {
+	background-position:-486px -200px;
+	background-color:#009900;
+	color:#fff;
+	text-decoration:none;
+}
+.photo_b_a_b span.wl {
+	background-position:-555px -166px;
+}
+.photo_b_a_b span.wl:hover {
+	background-position:-555px -200px;
+}
+.photo_b_a_b span.down {
+	float:left;
+}
+.c_p_l_c_i_d span.impeach {
+	margin-right:0px;
+	float:right;
+}
+.photo_b_b {
+	width:100%;
+	color:rgb(153,153,153);
+	line-height:18px;
+	font-size:12px;
+	-ms-word-break:break-all;
+	-ms-word-wrap:break-word;
+}
+.photo_b_c {
+	width:100%;
+	height:28px;
+	line-height:28px;
+}
+.photo_b_c_a {
+	font-weight:bold;
+	float:left;
+}
+.tagslist {
+	width:auto;
+}
+.tagslist a {
+	margin-top:3px;
+	line-height:20px;
+	border:1px solid #ccc;
+}
+.photo_b_d {
+	background-color:rgb(255,255,255);
+}
+.photo_b_e {
+	width:100%;
+}
+.photo_b_e span {
+	margin:3px 5px;
+	width:30px;
+	height:30px;
+	overflow:hidden;
+	float:left;
+}
+.photo_b_e span img {
+	max-width:30px;
+}
+.c_p_l_c_i_e_f {
+	padding:0px 0px 10px;
+	width:100%;
+	border-top-color:currentColor;
+	border-top-width:0px;
+	border-top-style:none;
+}
+.c_p_l_c_i_e_f_a {
+	width:655px;
+	height:28px;
+	line-height:28px;
+}
+.c_p_l_c_i_e_f_a input {
+	width:605px;
+	height:28px;
+	line-height:28px;
+}
+.c_p_l_c_i_e_f_b {
+	width:55px;
+	height:30px;
+}
+.c_p_l_c_i_e_i {
+	padding:10px 0px 0px;
+	width:100%;
+	border-top-color:currentColor;
+	border-top-width:0px;
+	border-top-style:none;
+}
+.c_p_l_c_i_e_i_b {
+	width:680px;
+}
+.c_p_l_c_i_e_i_c {
+	width:680px;
+	_height:20px;
+}
+.c_p_l_c_i_e_i_c_f {
+	margin-left:10px;
+	display:none;
+}
+.c_p_l_c_i_e_p {
+	width:100%;
+	margin-bottom:10px;
+}
+.c_p_l_c_i_e_p a {
+	margin:0px 2px;
+	padding:1px 4px;
+	text-decoration:none;
+}
+.c_p_l_c_i_e_p a:link {
+	margin:0px 2px;
+	padding:1px 4px;
+	text-decoration:none;
+}
+.c_p_l_c_i_e_p a:visited {
+	margin:0px 2px;
+	padding:1px 4px;
+	text-decoration:none;
+}
+.c_p_l_c_i_e_p b {
+	margin:0px 2px;
+	padding:1px 4px;
+	text-decoration:none;
+}
+.c_p_l_c_i_e_p a:hover {
+	color:rgb(255,255,255);
+	text-decoration:none;
+	background-color:rgb(0,153,0);
+}
+.c_p_l_c_i_e_p a:active {
+	color:rgb(255,255,255);
+	text-decoration:none;
+	background-color:rgb(0,153,0);
+}
+.c_p_l_c_i_e_p b {
+	color:rgb(255,255,255);
+	text-decoration:none;
+	background-color:rgb(0,153,0);
+}
+.photo_r_a {
+	margin:0px 0px 18px -18px;
+	padding:0px 19px 0px 18px;
+	width:200px;
+	height:32px;
+	line-height:32px;
+	overflow:hidden;
+	border-bottom-color:rgb(204,204,204);
+	border-bottom-width:1px;
+	border-bottom-style:solid;
+	float:left;
+	display:inline;
+	background-color:rgb(248,248,248);
+}
+.photo_r_b {
+	width:100%;
+	float:left;
+}
+.photo_r_b_i {
+	background:url("/img/bg.png") no-repeat -383px 40px rgb(232,232,232);
+	width:100px;
+	height:100px;
+	overflow:hidden;
+	float:left;
+	_background-image:url(/img/bg.gif);
+}
+.photo_r_b_ib {
+	background-color:rgb(222,222,222);
+}
+.photo_r_b_i img {
+	min-height:100px;
+	min-width:100px;
+}
+.photo_r_g {
+	width:100%;
+	float:left;
+}
+.photo_b_e span:hover {
+	opacity:0.8;
+	background-color:rgb(255,255,255);
+	-moz-opacity:0.80;
+}
+.c_p_l_c_i_e_i_a:hover {
+	opacity:0.8;
+	background-color:rgb(255,255,255);
+	-moz-opacity:0.80;
+}
+.photo_r_b_i img:hover {
+	opacity:0.8;
+	background-color:rgb(255,255,255);
+	-moz-opacity:0.80;
+}
+.photoexif {
+	border:1px solid rgb(204,204,204);
+	border-image:none;
+	margin-top:6px;
+	background-color:rgb(255,255,255);
+}
+.photoexif_l {
+	padding:12px;
+	width:200px;
+	float:left;
+}
+.photoexif_l_a {
+	width:100%;
+	overflow:hidden;
+	margin-bottom:3px;
+}
+.photoexif_l_b {
+	width:100%;
+	line-height:22px;
+	font-weight:bold;
+	-ms-word-break:break-all;
+	-ms-word-wrap:break-word;
+}
+.photoexif_l_c {
+	width:100%;
+	line-height:18px;
+	font-size:12px;
+	-ms-word-break:break-all;
+	-ms-word-wrap:break-word;
+}
+.photoexif_r {
+	width:76%;
+	float:right;
+}
+.photoexif_r_i {
+	padding:6px 0px;
+	width:100%;
+	line-height:20px;
+	border-bottom-color:rgb(233,233,233);
+	border-bottom-width:1px;
+	border-bottom-style:solid;
+	float:left;
+}
+.photoexif_r_i_k {
+	width:20%;
+	float:left;
+}
+.photoexif_r_i_v {
+	width:80%;
+	float:left;
+}
+.recommend-title {
+	width:1070px;
+	padding:60px 0 10px 0;
+	color:#777;
+	font-size:18px;
+	border-bottom:1px solid #ccc;
+}

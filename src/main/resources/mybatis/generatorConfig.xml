@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<properties resource="classpath:config/db.properties"/>
+
+	<context id="context">
+		<commentGenerator>
+            <!-- 是否取消注解-->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://jiajundb.mysql.rds.aliyuncs.com/trump"
+			userId="root"
+			password="Jiajun_123" />
+			
+		<!-- 实体 -->
+		<javaModelGenerator targetPackage="com.jiajun.pojo.system" targetProject="trump" />
+		<!-- mapper.java -->
+		<!-- <javaClientGenerator targetPackage="" type="" targetProject=""></javaClientGenerator> -->
+		<!-- mapper.xml -->
+		<sqlMapGenerator targetPackage="" targetProject="trump"></sqlMapGenerator>
+		
+		<!-- 为哪些表生成代码 tableName:表名 schema:不用填写 enableCountByExample="false" 不生成example -->
+		<table schema="" tableName="site_msg" domainObjectName="SiteMsgEntity" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false"/>
+	</context>
+</generatorConfiguration>
