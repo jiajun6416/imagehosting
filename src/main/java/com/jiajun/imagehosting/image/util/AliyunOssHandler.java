@@ -1,6 +1,7 @@
 package com.jiajun.imagehosting.image.util;
 
-import java.io.IOException;
+import java.io.File;
+import java.io.InputStream;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -11,10 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.aliyun.oss.ClientConfiguration;
-import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSSClient;
-import com.aliyun.oss.OSSException;
-import com.aliyun.oss.model.PutObjectRequest;
 
 /**
  * aliyun oss操作 
@@ -43,7 +41,8 @@ public class AliyunOssHandler {
 	@Value("${timeoutSecond}")
 	private int timeoutSecond;
 	
-    private static String key = "testkey";
+	@Value("${domain}")
+	private String domain;
     
     private OSSClient ossClient;
     
@@ -61,9 +60,12 @@ public class AliyunOssHandler {
     }
     
     
-    public void uploadFile() {
+    public String uploadFile(String path, String uniqueName, InputStream inputStream ) {
     	if(logger.isInfoEnabled()) {
-    		logger.info("Uploading a new object to OSS from a file");
+    		logger.info("Uploading image {} to oss", path+uniqueName);
     	}
+    	String key = path + uniqueName;
+    	ossClient.putObject(bucketName, key, inputStream);
+    	return domain+key;
     }
 }

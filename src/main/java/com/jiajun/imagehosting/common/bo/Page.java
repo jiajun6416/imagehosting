@@ -8,7 +8,7 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.jiajun.common.util.JsonUtils;
+import com.jiajun.imagehosting.common.util.JsonUtils;
 
 /**
  *  分页对象

@@ -77,15 +77,21 @@
 
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />				
+			<tx:method name="insert*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />
+			<tx:method name="add*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />				
 			<tx:method name="delete*" propagation="REQUIRED" read-only="false"
 				rollback-for="java.lang.Exception" />
 			<tx:method name="remove*" propagation="REQUIRED" read-only="false"
 				rollback-for="java.lang.Exception" />
-			<tx:method name="insert*" propagation="REQUIRED" read-only="false"
+			<tx:method name="delete*" propagation="REQUIRED" read-only="false"
 				rollback-for="java.lang.Exception" />
+			<tx:method name="modify*" propagation="REQUIRED" read-only="false"
+				rollback-for="java.lang.Exception" />								
 			<tx:method name="update*" propagation="REQUIRED" read-only="false"
-				rollback-for="java.lang.Exception" />
-			<tx:method name="save*" propagation="REQUIRED" read-only="false"
 				rollback-for="java.lang.Exception" />
 			<tx:method name="batchDelete" propagation="REQUIRED"
 				read-only="false" rollback-for="java.lang.Exception" />

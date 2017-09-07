@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="imageEntityMapper">
-  <resultMap id="BaseResultMap" type="com.jiajun.imagehosting.image.domain.imageEntity">
+  <resultMap id="BaseResultMap" type="com.jiajun.imagehosting.image.domain.ImageEntity">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="album_id" jdbcType="INTEGER" property="albumId" />
     <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="file_type" jdbcType="VARCHAR" property="fileType" />
+    <result column="unique_name" jdbcType="VARCHAR" property="uniqueName" />
     <result column="width" jdbcType="INTEGER" property="width" />
     <result column="height" jdbcType="INTEGER" property="height" />
-    <result column="size" jdbcType="INTEGER" property="size" />
-    <result column="is_public" jdbcType="BIT" property="isPublic" />
+    <result column="size" jdbcType="BIGINT" property="size" />
     <result column="http_url" jdbcType="VARCHAR" property="httpUrl" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
-    <result column="upload_time" jdbcType="TIMESTAMP" property="uploadTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="is_delete" jdbcType="BIT" property="isDelete" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, user_id, file_name, width, height, size, is_public, http_url, create_time, delete_time, 
-    upload_time, is_delete
+    id, album_id, file_name, file_type, unique_name, width, height, size, http_url, create_time, 
+    delete_time, update_time, is_delete
   </sql>
+   
+   <!-- ==================================================================================== -->
+	<select id="selectByUnique" parameterType="string" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List"/> from image where unique_name=uniqueName
+	</select>  
+  
+  <!-- ==================================================================================== -->
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -29,29 +38,35 @@
     delete from image
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.jiajun.imagehosting.image.domain.imageEntity">
-    insert into image (id, user_id, file_name, 
-      width, height, size, 
-      is_public, http_url, create_time, 
-      delete_time, upload_time, is_delete
-      )
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{fileName,jdbcType=VARCHAR}, 
-      #{width,jdbcType=INTEGER}, #{height,jdbcType=INTEGER}, #{size,jdbcType=INTEGER}, 
-      #{isPublic,jdbcType=BIT}, #{httpUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{deleteTime,jdbcType=TIMESTAMP}, #{uploadTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=BIT}
-      )
+  <insert id="insert" parameterType="com.jiajun.imagehosting.image.domain.ImageEntity">
+    insert into image (id, album_id, file_name, 
+      file_type, unique_name, width, 
+      height, size, http_url, 
+      create_time, delete_time, update_time, 
+      is_delete)
+    values (#{id,jdbcType=INTEGER}, #{albumId,jdbcType=INTEGER}, #{fileName,jdbcType=VARCHAR}, 
+      #{fileType,jdbcType=VARCHAR}, #{uniqueName,jdbcType=VARCHAR}, #{width,jdbcType=INTEGER}, 
+      #{height,jdbcType=INTEGER}, #{size,jdbcType=BIGINT}, #{httpUrl,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{deleteTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.jiajun.imagehosting.image.domain.imageEntity">
+  <insert id="insertSelective" parameterType="com.jiajun.imagehosting.image.domain.ImageEntity">
     insert into image
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="userId != null">
-        user_id,
+      <if test="albumId != null">
+        album_id,
       </if>
       <if test="fileName != null">
         file_name,
+      </if>
+      <if test="fileType != null">
+        file_type,
+      </if>
+      <if test="uniqueName != null">
+        unique_name,
       </if>
       <if test="width != null">
         width,
@@ -62,9 +77,6 @@
       <if test="size != null">
         size,
       </if>
-      <if test="isPublic != null">
-        is_public,
-      </if>
       <if test="httpUrl != null">
         http_url,
       </if>
@@ -74,8 +86,8 @@
       <if test="deleteTime != null">
         delete_time,
       </if>
-      <if test="uploadTime != null">
-        upload_time,
+      <if test="updateTime != null">
+        update_time,
       </if>
       <if test="isDelete != null">
         is_delete,
@@ -85,11 +97,17 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
+      <if test="albumId != null">
+        #{albumId,jdbcType=INTEGER},
       </if>
       <if test="fileName != null">
         #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null">
+        #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="uniqueName != null">
+        #{uniqueName,jdbcType=VARCHAR},
       </if>
       <if test="width != null">
         #{width,jdbcType=INTEGER},
@@ -98,10 +116,7 @@
         #{height,jdbcType=INTEGER},
       </if>
       <if test="size != null">
-        #{size,jdbcType=INTEGER},
-      </if>
-      <if test="isPublic != null">
-        #{isPublic,jdbcType=BIT},
+        #{size,jdbcType=BIGINT},
       </if>
       <if test="httpUrl != null">
         #{httpUrl,jdbcType=VARCHAR},
@@ -112,22 +127,28 @@
       <if test="deleteTime != null">
         #{deleteTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="uploadTime != null">
-        #{uploadTime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null">
         #{isDelete,jdbcType=BIT},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jiajun.imagehosting.image.domain.imageEntity">
+  <update id="updateByPrimaryKeySelective" parameterType="com.jiajun.imagehosting.image.domain.ImageEntity">
     update image
     <set>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=INTEGER},
+      <if test="albumId != null">
+        album_id = #{albumId,jdbcType=INTEGER},
       </if>
       <if test="fileName != null">
         file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null">
+        file_type = #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="uniqueName != null">
+        unique_name = #{uniqueName,jdbcType=VARCHAR},
       </if>
       <if test="width != null">
         width = #{width,jdbcType=INTEGER},
@@ -136,10 +157,7 @@
         height = #{height,jdbcType=INTEGER},
       </if>
       <if test="size != null">
-        size = #{size,jdbcType=INTEGER},
-      </if>
-      <if test="isPublic != null">
-        is_public = #{isPublic,jdbcType=BIT},
+        size = #{size,jdbcType=BIGINT},
       </if>
       <if test="httpUrl != null">
         http_url = #{httpUrl,jdbcType=VARCHAR},
@@ -150,8 +168,8 @@
       <if test="deleteTime != null">
         delete_time = #{deleteTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="uploadTime != null">
-        upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null">
         is_delete = #{isDelete,jdbcType=BIT},
@@ -159,18 +177,19 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jiajun.imagehosting.image.domain.imageEntity">
+  <update id="updateByPrimaryKey" parameterType="com.jiajun.imagehosting.image.domain.ImageEntity">
     update image
-    set user_id = #{userId,jdbcType=INTEGER},
+    set album_id = #{albumId,jdbcType=INTEGER},
       file_name = #{fileName,jdbcType=VARCHAR},
+      file_type = #{fileType,jdbcType=VARCHAR},
+      unique_name = #{uniqueName,jdbcType=VARCHAR},
       width = #{width,jdbcType=INTEGER},
       height = #{height,jdbcType=INTEGER},
-      size = #{size,jdbcType=INTEGER},
-      is_public = #{isPublic,jdbcType=BIT},
+      size = #{size,jdbcType=BIGINT},
       http_url = #{httpUrl,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       delete_time = #{deleteTime,jdbcType=TIMESTAMP},
-      upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>

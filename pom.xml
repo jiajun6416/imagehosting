@@ -139,7 +139,7 @@
 
 	<!-- 依赖的插件 , 运行 tomcat7:redeploy -->
 	<build>
-		<finalName></finalName>
+		<finalName>image</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>

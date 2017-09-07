@@ -326,11 +326,14 @@ var successFindurl;
                                     alert('图片异常，上传处理失败');
                                     return false;
                                 }
-                                window.location.href = "/" + successFindurl;
+                                //上传成功一张图片
+                                window.location.href = basePath+successFindurl;
                             } else {
-                                window.location.href = "/album/" + d_album;
+                            	//成功多条
+                                window.location.href = basePath+"/album/" + d_album;
                             }
                         } else {
+                        	
                             window.location.href = "/temp/" + successFindurl;
                         }
                     },
@@ -388,7 +391,7 @@ var successFindurl;
             }
             if (successpid == '0') successpid = '';
             successpid += response.findurl + ',';
-            successFindurl = response.findurl;
+            successFindurl = response.data;
         });
         uploader.on('all',
         function(type) {

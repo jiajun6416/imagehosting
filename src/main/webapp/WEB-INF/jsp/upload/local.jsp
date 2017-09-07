@@ -7,23 +7,13 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+  <base href="<%=basePath%>" />
   <HEAD>
-  <base href="<%=basePath%>">
   
-    <META content="IE=11.0000" http-equiv="X-UA-Compatible">
-    <META http-equiv="Content-Type" content="text/html;charset=utf-8">
-    <META name="keywords" content="上传电脑图片,贴图库,图床,图盘,图片上传,免费图床,图片外链,免费图片外链,图片外链空间,淘宝图片外链,qq空间图片外链,相册外链,免费支持外链相册">
-    <META name="description" content="专业提供图片上传，支持外链，提供高速免费无限量图片存储和外链空间。">
-    <TITLE>上传电脑图片 - 贴图库 — 免费、高速、稳定、专业图片外链</TITLE>
-    <LINK href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <LINK href="static/css/common.css?v=1603010" rel="stylesheet" type="text/css" />
-    <LINK href="static/css/userupload.css" rel="stylesheet" type="text/css">
-    <SCRIPT language="javascript" src="static/js/jquery-1.9.1.min.js" type="text/javascript"></SCRIPT>
-    <SCRIPT language="javascript" src="static/js/drag.js" type="text/javascript"></SCRIPT>
-    <SCRIPT language="javascript" src="static/js/jquery.dialog.js" type="text/javascript"></SCRIPT>
-    <SCRIPT language="javascript" src="static/js/common.js" type="text/javascript"></SCRIPT>
-    <META name="GENERATOR" content="MSHTML 11.00.9600.17207"></HEAD>
+  <%@ include file="../common.jsp" %>
   
+  </HEAD>
+
   <BODY>
 	<%@include file="../head.jsp"%>
     <link rel="stylesheet" href="static/js/upload/style.css">

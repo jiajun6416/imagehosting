@@ -100,12 +100,7 @@
         },
         "json");
     });
-}) function getQueryString(name) {
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-    var r = window.location.search.substr(1).match(reg);
-    if (r != null) return decodeURI(r[2]);
-    else return '';
-}
+}) 
 function impeach(t, s) {
     $.dialog.showIframeDialog(550, '举报', '<iframe frameborder="0" width="500" height="270" marginheight="0" marginwidth="0" scrolling="no" src="/impeach?photo=' + s + '"></iframe>');
 }

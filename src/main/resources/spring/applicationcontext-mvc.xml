@@ -71,7 +71,7 @@
 	</bean>
 
 	<!-- /跳转页面 -->
-	<mvc:view-controller path="/" view-name="redirect:/main/index" />
+	<mvc:view-controller path="/" view-name="redirect:/upload/local" />
 
 	<!-- 上传拦截，如最大上传值及最小上传值 -->
 	<bean id="multipartResolver"
