@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%> 
+ 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
  <%
@@ -9,6 +11,9 @@
 %>
   <base href="<%=basePath%>" />
 <HEAD>
+  <script type="text/javascript">
+  	var basePath = "<%=basePath%>"; 
+  </script>
 <%@ include file="../common.jsp" %>
 </HEAD>
 <BODY>
@@ -79,29 +84,29 @@
       <DIV class="user_nav">
         <SPAN class="user_nav_a">
           <A href="#">${username}</A>&gt;
-          <A href="#">${album.name}</A>&gt; ${image.fileName}</SPAN></DIV>
+          <A href="#">${album.name}</A>&gt; <span>${image.fileName}</span> </SPAN></DIV>
       <DIV class="c_p_l_c_i photo" pid="24511619" data-obj="24511619" style="margin-top:105px">
         <DIV class="photo_l">
           <DIV class="photo_l_t"></DIV>
           <DIV class="photo_a">
-            <IMG id="24511619" alt="${image.fileName}" src="${file.httpUrl}" style></DIV>
+            <IMG id="24511619" alt="${image.fileName}" src="${image.httpUrl}" style></DIV>
           <DIV class="photo_b">
             <DIV class="photo_b_a">
               <SPAN class="c_p_l_c_i_d photo_b_a_b only" style="left:0;top:0">
-                <span class="edit" style="float:right" onclick="edit_i('24511619')">编辑</span>
-                <a class=" span" href="${file.httpUrl}" target="_blank">原图</a></SPAN>
+                <span class="edit" style="float:right" onclick="edit_i('${image.id}')">编辑</span>
+                <a class="span" href="${image.httpUrl}" target="_blank">原图</a></SPAN>
             </DIV>
             <DIV class="photo_b_a">
               <SPAN class="photo_b_a_a">
                 <SPAN>
-                  <strong>${image.fileName}</strong></SPAN>
-                <SPAN>${image.fileType}</SPAN>
-                <SPAN>${image.width}x${imag.height}像素</SPAN>
+                  <strong>${image.fileName}</strong>.${image.fileType}</SPAN>
+                <SPAN>${image.width}x${image.height}像素</SPAN>
                 <SPAN class="photo_b_a_a_l"></SPAN>
               </SPAN>
             </DIV>
             <DIV class="photo_b_c">
-              <SPAN class="photo_b_c_a">上传时间：<fmt:formatDate value="${image.createTime}"/> </SPAN></DIV></DIV>
+              <SPAN class="photo_b_c_a">上传时间：<fmt:formatDate value="${image.createTime}" pattern="yyyy/MM/dd HH:mm:ss"/> </SPAN>
+              </DIV></DIV>
         </DIV>
         <DIV class="photo_r">
           <div id="TTKCopy">
@@ -110,29 +115,29 @@
                 <div class="TTKCopyFrame">
                   <label>图片外链</label>
                   <div class="TTKCopyTextFrame">
-                    <input type="text" value="${file.httpUrl}" />
-                    <button class="copybtn" data-clipboard-action="copy" data-clipboard-text="${file.httpUrl}">复制</button></div>
+                    <input type="text" value="${image.httpUrl}" />
+                    <button class="copybtn" data-clipboard-action="copy" data-clipboard-text="${image.httpUrl}">复制</button></div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="TTKCopyFrame">
                   <label>HTML代码</label>
                   <div class="TTKCopyTextFrame">
-                    <input type="text" value="<img src='${file.httpUrl}'>" />
-                    <button class="copybtn" data-clipboard-action="copy" data-clipboard-text="<img src='${file.httpUrl}'>">复制</button></div>
+                    <input type="text" value="<img src='${image.httpUrl}'>" />
+                    <button class="copybtn" data-clipboard-action="copy" data-clipboard-text="<img src='${image.httpUrl}'>">复制</button></div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="TTKCopyFrame">
                   <label>UBB代码</label>
                   <div class="TTKCopyTextFrame">
-                    <input type="text" value="[img]${file.httpUrl}[/img]" />
-                    <button class="copybtn" data-clipboard-action="copy" data-clipboard-text="[img]${file.httpUrl}[/img]">复制</button></div>
+                    <input type="text" value="[img]${image.httpUrl}[/img]" />
+                    <button class="copybtn" data-clipboard-action="copy" data-clipboard-text="[img]${image.httpUrl}[/img]">复制</button></div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="TTKCopyFrame">
                   <label>MarkDown</label>
                   <div class="TTKCopyTextFrame">
-                    <input type="text" value="![Markdown](${file.httpUrl})" />
-                    <button class="copybtn" data-clipboard-action="copy" data-clipboard-text="![Markdown](${file.httpUrl})">复制</button></div>
+                    <input type="text" value="![Markdown](${image.httpUrl})" />
+                    <button class="copybtn" data-clipboard-action="copy" data-clipboard-text="![Markdown](${image.httpUrl})">复制</button></div>
                 </div>
                 <div class="clearfix"></div>
               </div>

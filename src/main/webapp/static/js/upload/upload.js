@@ -327,7 +327,7 @@ var successFindurl;
                                     return false;
                                 }
                                 //上传成功一张图片
-                                window.location.href = basePath+successFindurl;
+                                window.location.href = basePath+"detail/"+successFindurl;
                             } else {
                             	//成功多条
                                 window.location.href = basePath+"/album/" + d_album;

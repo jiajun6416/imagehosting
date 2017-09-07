@@ -2,6 +2,8 @@ package com.jiajun.imagehosting.image.service.impl;
 
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,23 @@ public class ImageServiceImpl implements ImageService{
 	@Override
 	public ImageEntity getByUniqueName(String uniqueName) throws Exception {
 		return (ImageEntity) dao.selectObject(PICTURE_NAMESPACE+"selectByUnique", uniqueName);
+	}
+
+	@Override
+	public void updateImageName(Integer pId, String pName) throws Exception {
+		Map<String, Object> params = new HashMap<>();
+		params.put("id", pId);
+		params.put("pName", pName);
+		params.put("updateTime", new Date());
+		dao.update(PICTURE_NAMESPACE+"updateName", params);
+	}
+
+	@Override
+	public void deleteImage(Integer pId) throws Exception {
+		Map<String, Object> params = new HashMap<>();
+		params.put("id", pId);
+		params.put("updateTime", new Date());
+		dao.update(PICTURE_NAMESPACE+"updateStateToDelete", params);
 	}
 	
 }

@@ -8,10 +8,9 @@
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
   <base href="<%=basePath%>" />
+  <TITLE>上传本地图片 - imagehosting</TITLE>
   <HEAD>
-  
   <%@ include file="../common.jsp" %>
-  
   </HEAD>
 
   <BODY>

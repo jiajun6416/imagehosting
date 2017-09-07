@@ -23,9 +23,14 @@
    
    <!-- ==================================================================================== -->
 	<select id="selectByUnique" parameterType="string" resultMap="BaseResultMap">
-		select <include refid="Base_Column_List"/> from image where unique_name=uniqueName
+		select <include refid="Base_Column_List"/> from image where unique_name=#{uniqueName}
 	</select>  
-  
+	<update id="updateName" parameterType="map">
+		update image set file_name=#{pName}, update_time=#{updateTime} where id=#{id}
+	</update>
+	<update id="updateStateToDelete" parameterType="map">
+		update image set is_delete=1, update_time=#{updateTime} where id=#{id}
+	</update>
   <!-- ==================================================================================== -->
   
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

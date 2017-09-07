@@ -17,6 +17,7 @@
 	<mvc:annotation-driven />
 
 	<!--静态资源的映射 -->
+	<mvc:resources mapping="/static/**" location="/static/" />
 	<mvc:resources mapping="/**/*.js" location="/" />
 	<mvc:resources mapping="/**/*.css" location="/" />
 	<mvc:resources mapping="/**/*.png" location="/" />
