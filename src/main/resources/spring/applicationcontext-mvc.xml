@@ -11,17 +11,16 @@
 						http://www.springframework.org/schema/context 
 						http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:component-scan base-package="com.jiajun.imagehosting.**.controller" />
+	<context:component-scan base-package="com.jiajun.imagehosting.web.controller" />
 
 	<!-- 使用默认的handler映射器和handler适配器 , 注意: 自定义转换器不能取名conversionService, mvc自带了 -->
 	<mvc:annotation-driven />
 
 	<!--静态资源的映射 -->
 	<mvc:resources mapping="/static/**" location="/static/" />
-	<mvc:resources mapping="/**/*.js" location="/" />
-	<mvc:resources mapping="/**/*.css" location="/" />
-	<mvc:resources mapping="/**/*.png" location="/" />
-	<mvc:resources mapping="/**/*.gif" location="/" />
+
+	<mvc:view-controller path="/" view-name="redirect:/upload/local" />
+	<mvc:view-controller path="/index" view-name="redirect:/upload/local" />
 
 
 	<!-- 配置SpringMVC的视图解析器 -->
@@ -31,7 +30,7 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<bean class="com.jiajun.imagehosting.common.exceptionhandler.GlobalExceptionHandler">
+	<bean class="com.jiajun.common.exceptionhandler.GlobalExceptionHandler">
 		<!-- 这边只对http协议异常进行处理, ajax异常已经处理 -->
 		<property name="exceptionMappings">
 			<props>
@@ -71,8 +70,6 @@
 		</property>
 	</bean>
 
-	<!-- /跳转页面 -->
-	<mvc:view-controller path="/" view-name="redirect:/upload/local" />
 
 	<!-- 上传拦截，如最大上传值及最小上传值 -->
 	<bean id="multipartResolver"

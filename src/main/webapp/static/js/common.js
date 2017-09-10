@@ -171,6 +171,8 @@ function backTop() {
         else if ("removeall" === act) this.find(".scrollshowtips").remove();
     };
 })(jQuery);
+
+/*=======================================================cookie操作===============================================*/
 function setcookie(a, b) {
     var d = new Date();
     var v = arguments;
@@ -229,12 +231,15 @@ function getcookie(a) {
     }
     return null
 }
+
 function delcookie(a) {
     var e = new Date();
     e.setTime(e.getTime() - 1);
     var b = getCookie(a);
     document.cookie = a + "=" + a + ";path=/; domain=" + window.location.host + "; expires=" + e.toGMTString()
 }
+/*======================================================================================================================*/
+
 function movedown(id, imgtop) {
     var img = $('#box' + id + ' img');
     img.css('position', 'absolute');

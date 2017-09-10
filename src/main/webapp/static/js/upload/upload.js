@@ -67,8 +67,8 @@ var successFindurl;
         });
         uploader.on('uploadBeforeSend',
         function(block, data) {
-            data.Token = token;
-            console.log(token);
+/*            data.Token = token;
+            console.log(token);*/
         });
         uploader.on('dndAccept',
         function(items) {
@@ -413,6 +413,12 @@ var successFindurl;
         };
         $upload.on('click',
         function() {
+        	//必须选择相册才能上传
+        	if($("#albums").val() == 0) {
+        		$.dialog.showMsgLayer("提示", '请选择一个相册再上传！');
+        		return false;
+        	}
+        	
             if ($(this).hasClass('disabled')) {
                 return false;
             }

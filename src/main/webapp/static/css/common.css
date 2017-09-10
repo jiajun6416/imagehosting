@@ -108,6 +108,7 @@ a.tdn:active {
 	cursor:pointer;
 	background-color:rgb(0,153,0);
 }
+
 .cbtn:hover,.cbtn.hover {
 	background-color:rgb(0,204,0);
 }
@@ -1897,6 +1898,7 @@ a.user_nav_b_ffcur:visited {
 	border-right:4px solid transparent;
 	border-left:4px solid transparent;
 }
+
 #sub_hov:hover .caret {
 	border-bottom:4px solid;
 	border-top:none;
@@ -1906,7 +1908,7 @@ a.user_nav_b_ffcur:visited {
 	padding:20px 0;
 }
 .pages div {
-	}.pages div span,.pages div a {
+	}.pages div span,.pages div a,.pages div lable {
 	border:1px solid #009900;
 	min-width:22px;
 	display:inline-block;
@@ -1915,8 +1917,9 @@ a.user_nav_b_ffcur:visited {
 	margin-top:20px;
 	text-decoration:none;
 }
+
 .pages div a {
-	margin-right:10px
+	margin-right:5px
 }
 .pages div a:hover {
 	background-color:#009900;
@@ -1926,6 +1929,7 @@ a.user_nav_b_ffcur:visited {
 	background-color:#009900;
 	color:#fff
 }
+
 #tags {
 	position:fixed;
 	left:475px;
@@ -2689,9 +2693,9 @@ a.btn-danger {
 	top:3px;
 }
 .vipicon {
-	width:20px;
+	width:30px;
 	background:none;
 	margin-left:4px;
 	position:relative;
-	top:5px;
+	top:3px;
 }

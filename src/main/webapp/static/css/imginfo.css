@@ -178,7 +178,7 @@
 	line-height:24px;
 }
 }.only.c_p_l_c_i_d span,.c_p_l_c_i_d a.span {
-	background:url("/static/image/bg.png") no-repeat 100px 0px rgb(255,255,255);
+	background:url("../image/bg.png") no-repeat 100px 0px rgb(255,255,255);
 	border:1px solid rgb(204,204,204);
 	border-image:none;
 	width:38px;

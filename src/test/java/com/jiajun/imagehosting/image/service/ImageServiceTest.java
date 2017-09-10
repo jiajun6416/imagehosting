@@ -1,9 +1,11 @@
 package com.jiajun.imagehosting.image.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.jiajun.imagehosting.service.ImageService;
 
 public class ImageServiceTest extends BaseTest{
 	

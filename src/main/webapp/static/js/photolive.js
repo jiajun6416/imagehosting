@@ -1,4 +1,4 @@
-﻿function edit_i(pid) {
+﻿function edit_i(pid,preName) {
     if (true) {
         var pname = $('.photo_b_a_a span strong').html();
         s = ' <div class="register_f_a" >图片名称：<input type="text" name="pname" value="' + pname + '" style="float:none;width:200px"/><button id="delpicbtn" onclick="delpic(' + pid + ');return false" >删除</button></div>';
@@ -6,11 +6,16 @@
         function() {
             $.ajax({
                 beforeSend: function() {
-                    $.prompt.show('正在提交......');
-                    if ($('input[name="pname"]').val().length < 2) {
-                        $.dialog.showMsgLayer('提示', '名称过短！');
+                	var inputName = $('input[name="pname"]').val();
+                	if (inputName.length < 3 || inputName.length > 32) {
+                        $.dialog.showMsgLayer('提示', '相册名称在3-32位之间！');
                         return false;
                     }
+                	if(inputName == preName) {
+                		$.dialog.showMsgLayer('提示', '未作修改!');
+                		return false;
+                	}
+                    $.prompt.show('正在提交......');
                 },
                 complete: function() {
                     $.prompt.hidden()
@@ -46,26 +51,25 @@ function delpic(pid) {
     $.dialog.showFuncLayer(430, "确认删除", '确定要删除这张图片吗？',
     function() {
         if (true) {
-            $.post(basePath+"delete", {
-                'pid': pid
-            },
-            function(t) {
-                if (t.code == 200) {
-                    $.dialog.showMsgFuncLayer("成功", "删除成功",
-                    function() {
-                        window.location.reload();
-                    },
-                    1);
-                } else {
-                    $.dialog.showMsgLayer("提示", t.data);
-                }
-            });
-        } else {
-            $.dialog.showMsgFuncLayer("登录失效", "登录已失效，请重新登录！",
-            function() {
-                showSignIn();
-            },
-            1);
+            $.post(basePath+"delete", {'pId': pid},
+    	            function(t) {
+                    if (t.code == 200) {
+                        $.dialog.showMsgFuncLayer("成功", "删除成功",
+                        function() {
+                            window.location.reload();
+                        },
+                        1);
+                    } else if(t.code == 403) {
+                        $.dialog.showMsgFuncLayer("登录失效", "登录已失效，请重新登录！",
+                                function() {
+                                    showSignIn();
+                                },
+                              1);
+                    } 
+                    else {
+                        $.dialog.showMsgLayer("提示", t.data);
+                    }
+                });
         }
     });
 }
@@ -209,48 +213,49 @@ function() {
 $(".c_p_l_c_i_d .editor").live('click',
 function() {
     var theo = $(this);
-    if (getcookie('uid')) {
-        var pid = theo.parents('.c_p_l_c_i').attr('pid');
-        var pname = theo.parents('.c_p_l_c_i').find('.c_p_l_c_i_b a').html();
-        s = ' <div class="register_f_a" >图片名称：<input type="text" name="pname" value="' + pname + '" style="float:none;width:200px"/><button id="delpicbtn"  onclick="delpic(' + pid + ');return false" >删除</button></div>';
-        $.dialog.showMsgFuncLayer("编辑/删除图片", s,
-        function() {
-            $.ajax({
-                beforeSend: function() {
-                    $.prompt.show('正在提交......');
-                    if ($('input[name="pname"]').val().length < 2) {
-                        $.dialog.showMsgLayer('提示', '名称过短！');
-                        return false;
-                    }
-                },
-                complete: function() {
-                    $.prompt.hidden()
-                },
-                cache: false,
-                data: {
-                    'pid': pid,
-                    'pname': $('input[name="pname"]').val()
-                },
-                error: function() {
-                    $.dialog.showMsgLayer('系统异常', '对不起，系统出现异常，修改失败！');
-                },
-                success: function(t) {
-                    if (t.status == 1) {
-                        $('#box' + t.pid).find('.c_p_l_c_i_b a').html(t.info);
-                        $.dialog.hidden();
-                    } else {
-                        $.dialog.showMsgLayer('提示', '登录超时，请重新登录');
-                    }
-                },
-                type: 'POST',
-                url: '/?m=Home&c=User&a=saveTagCat'
-            });
-        },
-        0);
-    } else $.dialog.showMsgFuncLayer("请登录", "对不起，仅登录用户可进行此操作！",
-    function() {
-        showSignIn();
-    });
+    var pid = theo.parents('.c_p_l_c_i').attr('pid');
+    var pname = theo.parents('.c_p_l_c_i').find('.c_p_l_c_i_b a').html();
+    s = ' <div class="register_f_a" >图片名称：<input type="text" name="pname" value="' + pname + '" style="float:none;width:200px"/><button id="delpicbtn"  onclick="delpic(' + pid + ');return false" >删除</button></div>';
+    $.dialog.showMsgFuncLayer("编辑/删除图片", s,
+	    function() {
+	        $.ajax({
+	            beforeSend: function() {
+	            	var inputName = $('input[name="pname"]').val();
+	            	if(inputName == pname) {
+	            		$.dialog.showMsgLayer("提示", "图片名未修改!");
+	            		return false;
+	            	}
+	            	if (inputName.length < 2 || inputName.length > 32 ) {
+	            		$.dialog.showMsgLayer('提示', '图片名在2-32位之间');
+	            		return false;
+	            	}
+	                $.prompt.show('正在提交......');
+	            },
+	            complete: function() {
+	                $.prompt.hidden()
+	            },
+	            cache: false,
+	            data: {'pId': pid,'pName': $('input[name="pname"]').val()},
+	            error: function() {
+	                $.dialog.showMsgLayer('系统异常', '对不起，系统出现异常，修改失败！');
+	            },
+	            success: function(result) {
+	            	$.dialog.hidden();
+	            	if(result.code == 200) {
+	                    $('#box' + pid).find('.c_p_l_c_i_b a').html(result.data);
+	            	} else if(result.code == 403) {
+	            		$.dialog.showMsgFuncLayer("请登录", "对不起，仅登录用户可进行此操作！",function() {
+	            			showSignIn();
+	            		});
+	            	} else {
+	            		 $.dialog.showMsgLayer('提示', result.message);
+	            	}
+	            },
+	            type: 'POST',
+	            url: basePath+'update'
+	        });
+	    },
+	 0);
 });
 $(".c_p_l_c_i_d .share").live('click',
 function() {});

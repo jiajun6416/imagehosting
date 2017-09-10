@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+
+  <HEAD>
+    <META content="IE=11.0000" http-equiv="X-UA-Compatible">
+    <META http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <META name="keywords" content="上传电脑图片,贴图库,图床,图盘,图片上传,免费图床,图片外链,免费图片外链,图片外链空间,淘宝图片外链,qq空间图片外链,相册外链,免费支持外链相册">
+    <META name="description" content="专业提供图片上传，支持外链，提供高速免费无限量图片存储和外链空间。">
+    <TITLE>上传电脑图片 - 贴图库 — 免费、高速、稳定、专业图片外链</TITLE>
+    <LINK href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <LINK href="http://www.tietuku.com/static/css/common.css?v=1603010" rel="stylesheet" type="text/css" />
+    <LINK href="http://www.tietuku.com/static/css/userupload.css" rel="stylesheet" type="text/css">
+    <SCRIPT language="javascript" src="http://www.tietuku.com/static/js/jquery-1.9.1.min.js" type="text/javascript"></SCRIPT>
+    <SCRIPT language="javascript" src="http://www.tietuku.com/static/js/drag.js" type="text/javascript"></SCRIPT>
+    <SCRIPT language="javascript" src="http://www.tietuku.com/static/js/jquery.dialog.js" type="text/javascript"></SCRIPT>
+    <SCRIPT language="javascript" src="http://www.tietuku.com/static/js/common.js" type="text/javascript"></SCRIPT>
+    <META name="GENERATOR" content="MSHTML 11.00.9600.17207"></HEAD>
+  
+  <BODY>
+    <DIV class="header" style>
+      <DIV class="header_logo">
+        <A href="/">
+          <IMG alt="贴图库Logo" src="http://www.tietuku.com/static/image/logo11.png"></A>
+      </DIV>
+      <DIV class="header_user header_user_unsignin">
+        <SPAN class="header_user_up">
+          <a href="/apps" class="header_user_up_pc-3" style="display:block;">个人相册</a>
+          <A class="header_user_up_pc" href="/upload">上传电脑图片</A>
+          <A href="/network">上传网络图片</A></SPAN>
+      </DIV>
+      <DIV class="header_nav">
+        <span id="sub_hov2"></span>
+      </DIV>
+      <DIV class="header_nav">
+        <span id="messnum" style="display:none">
+          <span style="color:#333;position:relative;">
+            <a href="/message">&nbsp;消息&nbsp;</a>
+            <span id="messtip">0</span></span>
+          <SPAN>&nbsp;&nbsp;|&nbsp;&nbsp;</SPAN></span>
+      </DIV>
+    </DIV>
+    <link rel="stylesheet" href="http://www.tietuku.com/static/js/upload/style.css">
+    <link rel="stylesheet" href="http://www.tietuku.com/static/js/upload/webuploader.css">
+    <style>#sub_nav,#sub_nav2{width: 122px;}#sub_nav ul,#sub_nav2 ul{margin:0 20px;}</style>
+    <script language="javascript" type="text/javascript" src="http://www.tietuku.com/static/js/base64.js"></script>
+    <script>var token = 'BCBB0F5480391E6D7E4ACB9F2FA16E8924019E83:5f_sl4mgl8ZDS2PHStri4SS7dJo=:eyJkZWFkbGluZSI6MTUwNDY3MTAzNiwidWlkIjoiNjA5NTEwIiwiYWxidW0iOiIxMzU2NDQyIn0=';
+      var allownum = '300';
+      var successpid = '';
+      var d_album = '1356442';
+      $(function() {
+        setTimeout(function() {
+          $(window).resize();
+        },
+        500)
+      })</script>
+    <DIV class="container">
+      <DIV class="upload" style="margin-top:80px;">
+        <DIV class="upload_t" style="font-size:14px;">
+          <span>
+            <a href="/network">网络上传</a></span>上传图片到我的图片库</DIV>
+        <DIV class="upload_c">
+          <DIV class="upload_c_a">
+            <SPAN class="upload_c_a_a" style="font-size:14px">选择相册</SPAN>
+            <SPAN class="upload_c_a_b" onclick="return false;">
+              <select id="albums" style="border:none;height:28px;line-height:28px;width:100%;">
+                <option value>--------选择相册--------</option>
+                <option style="line-height:28px;color:#009900" value="1356442" selected="selected">222 (0)</option>
+                <option style="line-height:28px;color:#009900" value="1352520">默认相册 (9)</option></select>
+            </SPAN>
+            <input type="button" value="创建相册" onclick="createalbum()" class="cbtn upload_c_a_c_b_a_b"></DIV>
+          <DIV class="upload_c_b">
+            <DIV id="uploadcontainer">
+              <div id="uploader">
+                <div class="queueList">
+                  <div id="dndArea" class="placeholder">
+                    <div id="filePicker"></div>
+                    <p>支持鼠标拖拽、QQ截屏后Ctrl+V粘贴、点击选择，单次最多可选
+                      <b style="color:#999">300</b>张</p></div>
+                </div>
+                <div class="statusBar" style="display:none;">
+                  <div class="progress">
+                    <span class="text">0%</span>
+                    <span class="percentage"></span>
+                  </div>
+                  <div class="info"></div>
+                  <div class="btns">
+                    <div id="filePicker2"></div>
+                    <div class="uploadBtn">开始上传</div></div>
+                </div>
+              </div>
+            </DIV>
+          </DIV>
+          <DIV class="upload_c_c">温馨提示：图片格式支持JPG、JPEG、GIF、PNG；一次可添加上传300张图片，单张图片不可超过10M。</DIV></DIV>
+      </DIV>
+      <SCRIPT language="javascript" src="http://www.tietuku.com/static/js/useralbum.js?v=160705" type="text/javascript"></SCRIPT>
+      <script type="text/javascript" src="http://www.tietuku.com/static/js/upload/dist/webuploader.js?170620"></script>
+      <script type="text/javascript" src="http://www.tietuku.com/static/js/upload/upload.js?date=170620"></script>
+      <SCRIPT language="javascript" src="http://www.tietuku.com/static/js/userupload.js" type="text/javascript"></SCRIPT>
+      <LINK href="http://www.tietuku.com/static/css/useralbum.css?v=160705" rel="stylesheet" type="text/css" />
+      <DIV class="footer">
+        <P>Copyright ©2013 - 2017</P> 
+      </DIV>
+  </BODY>
+
+</HTML>

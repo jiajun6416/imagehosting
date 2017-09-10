@@ -57,7 +57,7 @@
 	height:200px;
 }
 .album_i_a_ano {
-	background:url("/img/bg.png") no-repeat -690px 80px rgb(240,240,240);
+	background:url("../image/bg.png") no-repeat -690px 80px rgb(240,240,240);
 	text-align:center;
 	color:rgb(204,204,204);
 	line-height:230px;
@@ -73,7 +73,7 @@
 	overflow:hidden
 }
 .album_i_a_bno {
-	background:url("/img/bg.png") no-repeat -740px 40px rgb(232,232,232);
+	background:url("../image/bg.png") no-repeat -740px 40px rgb(232,232,232);
 	_background-image:url(/img/bg.gif);
 }
 .album_i_a_bnob {

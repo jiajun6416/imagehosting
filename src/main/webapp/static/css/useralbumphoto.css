@@ -105,11 +105,11 @@
 	float:left;
 }
 .editphoto_a_d_b {
-	background:url("/img/bg.png") no-repeat 0px -110px;
+	background:url("../image/bg.png") no-repeat 0px -110px;
 	width:22px;
 	height:28px;
 	float:right;
-	_background-image:url(/img/bg.gif);
+	_background-image:url(../image/bg.gif);
 }
 .editphoto_a_d_b:hover {
 	background-position:-105px -110px;
