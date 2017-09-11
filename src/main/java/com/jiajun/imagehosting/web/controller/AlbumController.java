@@ -59,9 +59,7 @@ public class AlbumController extends BaseController{
 	public String toAlbum(HttpSession session, Model model) throws Exception {
 		//查询所有相册
 		UserEntity user = this.getLoginUser(session);
-		Assert.notNull(user);
 		List<AlbumEntity> albumList = albumService.getHasAlbumsContainImage(user.getId());
-		model.addAttribute("username", user.getUsername());
 		model.addAttribute("albumList", albumList);
 		return "album/list";
 	}

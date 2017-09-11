@@ -106,6 +106,7 @@ body{
 }
 
 .message{padding:0 6px 0 10px; font-size:12px; float:right;padding-right: 30px;color:olive;}
+#logging{padding:0 6px 0 10px;  float:right;padding-right: 30px;}
 
 .box a{color:#999;}
 .box a:hover, .box a:focus{text-decoration:underline;}

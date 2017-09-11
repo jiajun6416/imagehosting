@@ -320,7 +320,6 @@ var successFindurl;
                     $.dialog.showMsgFuncLayer("提示", stats.successNum + "张图片全部上传成功",
                     function() {
                         successpid = successpid.substring(0, successpid.length - 1);
-                        if (d_album > 0 && d_album != 1215185) {
                             if (successpid.split(',').length < 2) {
                                 if (!successFindurl) {
                                     alert('图片异常，上传处理失败');
@@ -330,13 +329,9 @@ var successFindurl;
                                 window.location.href = basePath+"detail/"+successFindurl;
                             } else {
                             	//成功多条
-                                window.location.href = basePath+"/album/" + d_album;
+                                window.location.href = basePath+"list/" + d_album;
                             }
-                        } else {
-                        	
-                            window.location.href = "/temp/" + successFindurl;
-                        }
-                    },
+                    	},
                     1);
                 } else {
                     console.log(stats);

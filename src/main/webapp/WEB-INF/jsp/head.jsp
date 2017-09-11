@@ -9,7 +9,7 @@
 <body>
     <DIV class="header" style>
       <DIV class="header_logo">
-        <A href="/">
+        <A href="index">
           <IMG alt="贴图库Logo" src="static/image/logo11.png"></A>
       </DIV>
       <DIV class="header_user header_user_unsignin">
@@ -41,7 +41,7 @@
 		</DIV>
 		<DIV class="header_nav" style="padding-right: 50px;">
 			<span id="sub_hov" style="position:relative;">
-				<a href="javascript:;">${sessionScope.session_user_key.username}
+				<a href="javascript:;">${sessionScope.session_user_key.nickname}
 				<b class="caret"></b></a>
 				<SPAN>&nbsp;&nbsp;</SPAN>
 				<div id="sub_nav" style="right:0;top:30px;">

@@ -1,4 +1,4 @@
-﻿function edit_i(pid,preName) {
+﻿function edit_i(pid) {
     if (true) {
         var pname = $('.photo_b_a_a span strong').html();
         s = ' <div class="register_f_a" >图片名称：<input type="text" name="pname" value="' + pname + '" style="float:none;width:200px"/><button id="delpicbtn" onclick="delpic(' + pid + ');return false" >删除</button></div>';
@@ -11,7 +11,7 @@
                         $.dialog.showMsgLayer('提示', '相册名称在3-32位之间！');
                         return false;
                     }
-                	if(inputName == preName) {
+                	if(inputName == pname) {
                 		$.dialog.showMsgLayer('提示', '未作修改!');
                 		return false;
                 	}
@@ -33,8 +33,10 @@
                     	$('.photo_b_a_a span strong').html(t.data);
                     	$('.user_nav_a span').html(t.data);
                         $.dialog.hidden();
-                    } else {
+                    } else if(t.code == 403) {
                         $.dialog.showMsgLayer('提示', '登录超时，请重新登录');
+                    } else {
+                    	 $.dialog.showMsgLayer('提示', t.message);
                     }
                 },
                 type: 'POST',

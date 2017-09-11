@@ -1,6 +1,5 @@
 package com.jiajun.imagehosting.web.controller;
 
-import java.util.Iterator;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

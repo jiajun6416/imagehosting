@@ -17,7 +17,10 @@ $(function() {
 });
 
 $('#albums').change(function() {
+	//设置cookie, 存储用户行为, 并且session缓存
 	var albumId = $(this).val();
+	d_album = albumId;
+	
 	if(albumId == 0) {
 		$.cookie('selected_album_'+user, 0, {
 			expires : 30, path:'/'

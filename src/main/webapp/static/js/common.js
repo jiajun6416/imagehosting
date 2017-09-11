@@ -162,7 +162,8 @@ function backTop() {
             });
         }
     } else if (scrollTopDom.length) scrollTopDom.hide();
-}; (function($) {
+}; 
+(function($) {
     $.fn.scrollshowtips = function(act) {
         if ("show" === act && !this.find(".scrollshowtips").length) $('<div class="scrollshowtips"><span class="scrollshowtipsloading">正在加载中，请稍候......</span></div>').appendTo(this);
         else if ("null" === act) this.find(".scrollshowtips").html('呃，没有了！');

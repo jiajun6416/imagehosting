@@ -32,7 +32,7 @@ public class Page<T> implements java.io.Serializable{
 	
 	private void init() {
 		currentPage = 1;
-		pageSize = 1; //default page size
+		pageSize = 25; //default page size
 	}
 	
 	public Page() {

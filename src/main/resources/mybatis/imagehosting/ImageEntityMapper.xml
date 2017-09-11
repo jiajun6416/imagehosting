@@ -62,16 +62,18 @@
   	</select>
 
 	<select id="selectIdsByUserId" parameterType="int" resultType="int">
-		SELECT
-			i.id
+		SELECT DISTINCT
+			(i.id)
 		FROM
 			USER u,
 			album a,
 			image i
 		WHERE
-			i.album_id = a.id
-		AND u.id = a.user_id
-		AND a.id = #{userId}
+			u.id = a.user_id
+		AND a.id = i.album_id
+		AND a.is_delete = 0
+		AND i.is_delete = 0
+		AND u.id = #{userId}
 	</select>	
   	
   <!-- ==================================================================================== -->

@@ -75,7 +75,7 @@
     <DIV class="user">
       <DIV class="user_nav">
         <SPAN class="user_nav_a">
-          <A href="#">${sessionScope.session_user_key.username}</A>&gt;
+          <A href="#">${sessionScope.session_user_key.nickname}</A>&gt;
           <A href="#">${album.name}</A>&gt; <span>${image.fileName}</span> </SPAN></DIV>
       <DIV class="c_p_l_c_i photo" pid="24511619" data-obj="24511619" style="margin-top:105px">
         <DIV class="photo_l">
@@ -85,7 +85,7 @@
           <DIV class="photo_b">
             <DIV class="photo_b_a">
               <SPAN class="c_p_l_c_i_d photo_b_a_b only" style="left:0;top:0">
-                <span class="edit" style="float:right" onclick="edit_i('${image.id}', '${image.fileName}')">编辑</span>
+                <span class="edit" style="float:right" onclick="edit_i('${image.id}')">编辑</span>
                 <a class="span" href="${image.httpUrl}" target="_blank">原图</a></SPAN>
             </DIV>
             <DIV class="photo_b_a">

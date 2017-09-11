@@ -24,7 +24,7 @@
       var allownum = '300';
       var successpid = '';
       //选中的album id
-      var d_album = '1356442';
+      var d_album = '${sessionScope.albumSelected}';
       $(function() {
         setTimeout(function() {
           $(window).resize();

@@ -11,13 +11,11 @@
 %>
   <base href="<%=basePath%>" />
 <!-- <base href="/image/static/login/"> -->
-<link rel="icon" href="static/login/icon/login.png" type="image/x-icon" />
-<link rel="shortcut icon" href="static/login/icon/login.png" type="image/x-icon" />
+<link rel="icon" href="static/login/image/login.png" type="image/x-icon" />
+<link rel="shortcut icon" href="static/login/image/login.png" type="image/x-icon" />
 
 <link rel="stylesheet" type="text/css" href="static/login/css/reset.css">
 <link rel="stylesheet" type="text/css" href="static/login/css/structure.css">
-<style type="text/css">
-</style>
 </head>
 
 <body>
@@ -25,7 +23,7 @@
 	<fieldset class="boxBody">
 	  <label>Username</label>
 	  <input type="text" tabindex="1" id="username" name="username" placeholder="username or email" required maxlength='32' minlength='3'>
-	  <label>Password<span class="message"></span></label>
+	  <label>Password<span class="message"></span><img id="logging" src="static/login/image/logging.gif" style="display:none; "></label>
 	  <input type="password" tabindex="2" id="password" name="password" required placeholder="password" maxlength='32' minlength='3'>
 	</fieldset>
 	<footer>
@@ -52,6 +50,17 @@ $("#password").bind("focus", function() {
 	$(".message").html("");	
 })
 
+var callback = GetQueryString("callback");
+if(callback == null) callback="index";
+
+//获得地址栏的参数
+function GetQueryString(name) {
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)return  unescape(r[2]); return null;
+}
+
+
 function login() {
 	var username = $("#username").val();
 	var password_text = $("#password").val();
@@ -64,6 +73,7 @@ function login() {
 	if($("#rememberme").prop("checked")) {
 		rememberme = true;
 	}
+	$("#logging").show();
 	/* console.log({"username":username, "password":password, "rememberme":rememberme}); */
 	$.ajax({
 		type:'POST',
@@ -75,15 +85,18 @@ function login() {
 			if(data.code == 200) {
 				//更新cookie
 				updateCookie();
-				location.href="index";
+				location.href=callback;
 			} else {
 				$(".message").html("用户名或者密码错误");
 				setTimeout(function() {
 					$(".message").html("");
 				},2000)
 			}
+			$("#logging").hide();		
 		},
 		error: function() {
+			$("#logging").hide();
+			alert("服务器忙...");
 		}
 	});
 }
@@ -105,9 +118,9 @@ $(function() {
 	var username = $.cookie('username');
 	var password = $.cookie('password');
 	if ( typeof(password) != "undefined" && password != null && password != '') {
-		$("#username").val(username);
-		$("#password").val(password);
-		$("#rememberme").attr("checked", true);
+		$.cookie('password',null, {
+			expires : 0, path:'/'
+		});
 	} else if(typeof(username) != "undefined" && username != null && username != ''){
 		$("#username").val(username);
 		$("#password").focus();
@@ -121,7 +134,7 @@ function updateCookie() {
 		$.cookie('username', $("#username").val(), {
 			expires : 7, path:'/'
 		});
-		$.cookie('password', $("#password").val(), {
+		$.cookie('password', $.md5($("#password").val()), {
 			expires : 7,path:'/'
 		});
 	} else { 

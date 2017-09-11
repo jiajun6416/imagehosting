@@ -6,7 +6,7 @@
 <HTML xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>个人相册--${username}</title>
+<title>个人相册--${sessionScope.session_user_key.nickname}</title>
 <%@ include file="../common.jsp" %>
 </head>
 <body>	
@@ -16,7 +16,7 @@
 		<DIV class="user">
 			<DIV class="user_nav">
 				<SPAN class="user_nav_a" style="display:inline-block;">
-					<a href="#">${username}</a>的个人相册&nbsp;&nbsp;</SPAN>
+					<span style="color: black;font-weight: 600;">${sessionScope.session_user_key.nickname}</span>的个人相册&nbsp;&nbsp;</SPAN>
 				<span class="user_nav_b" id="create_a" >
 					<input type="button" value="创建相册" onclick="createalbum()" class="cbtn upload_c_a_c_b_a_b">
 				</span>

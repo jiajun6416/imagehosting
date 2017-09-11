@@ -100,9 +100,8 @@ public class ImageController extends BaseController{
 		if(uniqueName.length() != 16) {
 			throw new Exception("参数错误...");
 		}
-		AlbumEntity album = albumService.getById(this.getSelectedAlbum(session));
-		Assert.notNull(album);
 		ImageEntity imageEntity = imageService.getByUniqueName(uniqueName);
+		AlbumEntity album = albumService.getById(imageEntity.getAlbumId());
 		model.addAttribute("album",album);
 		model.addAttribute("image", imageEntity);
 		return "image/detail";
