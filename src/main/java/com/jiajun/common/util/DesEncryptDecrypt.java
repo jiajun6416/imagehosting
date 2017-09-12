@@ -19,17 +19,25 @@ import javax.crypto.spec.DESKeySpec;
 public class DesEncryptDecrypt {
 	
 	/*key需要大于八位*/
-	private static final String key = "";
+	private String key;
 	
-	private static DesEncryptDecrypt ourInstance = new DesEncryptDecrypt();
+	private static DesEncryptDecrypt ourInstance;
     
-    public static DesEncryptDecrypt getInstance() {
-        return ourInstance;
+    public static DesEncryptDecrypt getInstance(String key) {
+        if(ourInstance != null) {
+        	return ourInstance;
+        } else {
+        	synchronized (DesEncryptDecrypt.class) {
+        		ourInstance = new DesEncryptDecrypt(key);
+			}
+        }
+    	return ourInstance;
     }
-    
-    private Cipher ecipher,dcipher;
 
-    private DesEncryptDecrypt(){
+	private Cipher ecipher,dcipher;
+
+    private DesEncryptDecrypt(String key){
+    	this.key = key;
         DESKeySpec dks;
         try {
             dks = new DESKeySpec(key.getBytes());

@@ -12,6 +12,13 @@ import com.jiajun.common.util.DesEncryptDecrypt;
  * @author tvu
  */
 public class EncryPropertyPlaceholderConfigurer extends PropertyPlaceholderConfigurer{
+	
+	private String key;
+
+	public void setKey(String key) {
+		this.key = key;
+	}
+
 	private static List<String> encryPropers  = new ArrayList<>();
 
 	static {
@@ -24,8 +31,8 @@ public class EncryPropertyPlaceholderConfigurer extends PropertyPlaceholderConfi
 	@Override
 	protected String convertProperty(String propertyName, String propertyValue) {
 		if(encryPropers.contains(propertyName)) {
-			System.out.println(propertyName+"_"+propertyValue);
-			return DesEncryptDecrypt.getInstance().decrypt(propertyValue);
+			 DesEncryptDecrypt descEnceypt = DesEncryptDecrypt.getInstance(key);
+			return descEnceypt.decrypt(propertyValue);
 		}
 		return super.convertProperty(propertyName, propertyValue);
 	}

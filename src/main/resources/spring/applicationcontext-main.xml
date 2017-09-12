@@ -35,8 +35,9 @@
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	
-	<!-- 使用加密的占位符解析 -->
+	<!-- 使用加密的占位符解析, key是加解密的公key -->
 	<bean class="com.jiajun.imagehosting.config.EncryPropertyPlaceholderConfigurer">
+		<property name="key" value=""/>
 		<property name="locations" value="classpath:config/*.properties"/>
 	</bean>
 
@@ -85,6 +86,5 @@
 		<property name="configLocation" value="classpath:ehcache/ehcache.xml" />
 		<property name="cacheManagerName" value="springEhcacheManager"/>
 	</bean>
-	
 	
 </beans>
