@@ -15,10 +15,9 @@
 	overflow:hidden;
 }
 body{
+  background-repeat: repeat-y scroll center center;
   background-image:url('back1.jpg');
-  background-repeat:no-repeat;
-  background-size: 103%;
-  background:#ffff;
+  background-size:106%;
 }
 .box.login
 {

@@ -49,8 +49,8 @@
 								</option>
 							</c:forEach>
 					</select>
-					</SPAN> <input type="button" value="创建相册" onclick="createalbum()"
-						class="cbtn upload_c_a_c_b_a_b">
+					</SPAN> 
+					<input type="button" value="创建相册" onclick="createalbum()" class="cbtn upload_c_a_c_b_a_b">
 				</DIV>
 				<DIV class="upload_c_b">
 					<DIV id="uploadcontainer">

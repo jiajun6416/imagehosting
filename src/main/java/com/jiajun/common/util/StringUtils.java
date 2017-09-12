@@ -20,6 +20,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 	
     private static final char SEPARATOR = '_';
     private static final String CHARSET_NAME = "UTF-8";
+    private static final String IMAGE_URL_PATTERN= "^((https|http)?:\\/\\/)[^\\s]+.(jpg|png|jpeg|gif)&";
     
     /**
      * 转换为字节数组
@@ -372,6 +373,12 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
     	}
     	result.append(val.substring(1));
     	return result.toString();
+    }
+    
+    //判断是否是image url 
+    public static boolean isImageUrl(String url) {
+    	Pattern p = Pattern.compile(IMAGE_URL_PATTERN, Pattern.CASE_INSENSITIVE);  
+    	return p.matcher(url).matches();
     }
     
 }

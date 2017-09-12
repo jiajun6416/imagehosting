@@ -2,12 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%> 
- 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html>
 <HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>${image.fileName} -image</title>
 <%@ include file="../common.jsp" %>
 </HEAD>
+
 <BODY>
   <%@ include file="../head.jsp" %>
   <SCRIPT language="javascript" src="static/js/clipboard.min.js" type="text/javascript"></SCRIPT>
@@ -69,14 +71,16 @@
       })
 
     });
-    var aid = '1356442';
-    var pid = '24511619';</SCRIPT>
+    var aid = ${album.id};
+    var pid = ${image.id};
+  
+    </SCRIPT>
   <DIV class="container">
     <DIV class="user">
       <DIV class="user_nav">
         <SPAN class="user_nav_a">
-          <A href="#">${sessionScope.session_user_key.nickname}</A>&gt;
-          <A href="#">${album.name}</A>&gt; <span>${image.fileName}</span> </SPAN></DIV>
+          <A href="album">${sessionScope.session_user_key.nickname}</A>&gt;
+          <A href="list/${album.id}">${album.name}</A>&gt; <span>${image.fileName}</span> </SPAN></DIV>
       <DIV class="c_p_l_c_i photo" pid="24511619" data-obj="24511619" style="margin-top:105px">
         <DIV class="photo_l">
           <DIV class="photo_l_t"></DIV>
@@ -142,6 +146,6 @@
   <SCRIPT language="javascript" src="static/js/photolive.js" type="text/javascript"></SCRIPT>
   <SCRIPT language="javascript" src="static/js/userphoto.js?v=1605" type="text/javascript"></SCRIPT>
   <SCRIPT language="javascript" src="static//js/exhibition_3.js" type="text/javascript"></SCRIPT>
-	<%@ include file="../foot.jsp" %>
+  <%@ include file="../foot.jsp" %>
 </BODY>
 </HTML>

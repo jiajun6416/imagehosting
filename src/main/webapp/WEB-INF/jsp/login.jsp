@@ -73,7 +73,7 @@ function login() {
 	if($("#rememberme").prop("checked")) {
 		rememberme = true;
 	}
-	$("#logging").show();
+	shade_show();
 	/* console.log({"username":username, "password":password, "rememberme":rememberme}); */
 	$.ajax({
 		type:'POST',
@@ -87,18 +87,35 @@ function login() {
 				updateCookie();
 				location.href=callback;
 			} else {
+				shade_hide();
 				$(".message").html("用户名或者密码错误");
 				setTimeout(function() {
 					$(".message").html("");
 				},2000)
 			}
-			$("#logging").hide();		
 		},
 		error: function() {
-			$("#logging").hide();
+			shade_hide();
 			alert("服务器忙...");
 		}
 	});
+}
+
+function shade_show() {
+	$("#username").attr("disabled",true);
+	$("#password").attr("disabled",true);
+	$(".btnLogin").attr("disabled",true);
+	$("#rememberme").attr("disabled",true);
+	$("#logging").show();
+}
+
+function shade_hide() {
+	$("#username").removeAttr("disabled");
+	$("#password").removeAttr("disabled");
+	$(".btnLogin").removeAttr("disabled");
+	$("#rememberme").removeAttr("disabled");
+	$(".btnLogin").blur();
+	$("#logging").hide();
 }
 
 var nameMinLength = $("#username").attr("minlength");

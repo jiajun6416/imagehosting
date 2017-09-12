@@ -24,7 +24,7 @@
    
    <!-- ==================================================================================== -->
 	<select id="selectByUnique" parameterType="string" resultMap="BaseResultMap">
-		select <include refid="Base_Column_List"/> from image where unique_name=#{uniqueName}
+		select <include refid="Base_Column_List"/> from image where is_delete=0 and unique_name=#{uniqueName}
 	</select>  
 	<update id="updateName" parameterType="map">
 		update image set file_name=#{pName}, update_time=#{updateTime} where id=#{id}

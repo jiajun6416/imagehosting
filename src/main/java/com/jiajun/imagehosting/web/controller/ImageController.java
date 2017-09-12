@@ -2,6 +2,7 @@ package com.jiajun.imagehosting.web.controller;
 
 
 import java.awt.image.BufferedImage;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -22,6 +23,8 @@ import org.springframework.web.util.HtmlUtils;
 
 import com.jiajun.common.base.controller.BaseController;
 import com.jiajun.common.bo.Result;
+import com.jiajun.common.util.HttpClientUtils;
+import com.jiajun.common.util.StringUtils;
 import com.jiajun.imagehosting.domain.AlbumEntity;
 import com.jiajun.imagehosting.domain.ImageEntity;
 import com.jiajun.imagehosting.domain.UserEntity;
@@ -94,6 +97,23 @@ public class ImageController extends BaseController{
 		return Result.success(uniqueName);
 	}
 	
+	
+	@RequestMapping("network/upload")
+	@ResponseBody
+	public Result uploadNetworkImage(String fileurl, HttpSession session) throws Exception{
+		// 判断是image路径
+		if(StringUtils.isImageUrl(fileurl)) {
+			InputStream is = HttpClientUtils.getImageStream(fileurl);
+			UserEntity user = this.getLoginUser(session);
+			Integer album = this.getSelectedAlbum(session);
+			String fileType = fileurl.substring(fileurl.lastIndexOf(".")+1);
+			
+		} else {
+			return Result.fail("非图片资源链接");
+		}
+		return Result.success(null);
+	}
+	
 	@RequestMapping("detail/{uniqueName}")
 	public String showImage(@PathVariable("uniqueName")String uniqueName, Model model, 
 			HttpServletRequest request, HttpSession session) throws Exception {
@@ -101,9 +121,12 @@ public class ImageController extends BaseController{
 			throw new Exception("参数错误...");
 		}
 		ImageEntity imageEntity = imageService.getByUniqueName(uniqueName);
+		if(imageEntity == null) {
+			throw new Exception("所选图片不存在.");
+		}
 		AlbumEntity album = albumService.getById(imageEntity.getAlbumId());
-		model.addAttribute("album",album);
 		model.addAttribute("image", imageEntity);
+		model.addAttribute("album",album);
 		return "image/detail";
 	}
 	

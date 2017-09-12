@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>${sessionScope.session_user_key.nickname}的${album.name}-相册详情</title>
 <%@ include file="../common.jsp" %>
 
 </head>
@@ -133,6 +133,7 @@
 	     </div>
      </div>
     <script>
+    	var aid=${album.id};
     	$(function() {
     		$("#sizeSelect").val(${page.pageSize});
     		$('#number').keypress(function(e) {

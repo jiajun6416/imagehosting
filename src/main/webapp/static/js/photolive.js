@@ -58,7 +58,9 @@ function delpic(pid) {
                     if (t.code == 200) {
                         $.dialog.showMsgFuncLayer("成功", "删除成功",
                         function() {
-                            window.location.reload();
+                            //退回相册
+                        	// window.location.reload();
+                        	window.location.href=basePath+"list/"+aid;
                         },
                         1);
                     } else if(t.code == 403) {

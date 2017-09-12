@@ -67,4 +67,5 @@ public class AliyunOssHandler {
     	ossClient.putObject(bucketName, key, inputStream);
     	return domain+key;
     }
+    
 }

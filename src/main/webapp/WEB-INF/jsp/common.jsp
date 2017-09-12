@@ -8,7 +8,9 @@
 	var basePath = '${basePath}';
 	var user = '${sessionScope.session_user_key.username}';
 </script>
- 
+<link rel="icon" href="static/login/image/login.png" type="image/x-icon" />
+<link rel="shortcut icon" href="static/login/image/login.png" type="image/x-icon" />
+
  <LINK href="static/css/common.css?v=1603010" rel="stylesheet" type="text/css" />
  <LINK href="static/css/useralbumphoto.css" rel="stylesheet" type="text/css" />
  <LINK href="static/css/userphoto.css" rel="stylesheet" type="text/css" />

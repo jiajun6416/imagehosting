@@ -310,39 +310,56 @@ function addmorepic() {
         }).attr("src", url);
     } else $("#morepicv").focus();
 }
+
 var asyncloadimgwait = false;
+
 function asyncloadimg() {
     var url = $.trim($(".upload_c_q_a_ipt").val());
+    if(url == null || url.lenth==0) {
+    	return false;
+    } 
+    if(!isImageUrl(url)) {
+    	$.dialog.showMsgFuncLayer("提示", "网址错误, 只支持JPG、JPEG、GIF、PNG格式图片");
+    	return false;
+    }
     if (url.length) {
         $.ajax({
             type: "POST",
-            url: "http://up.imgapi.com/",
-            data: {
-                "Token": token,
-                "fileurl": url,
-            },
+            url: basePath+"network/upload",
+            data: {"fileurl": url},
             beforeSend: function() {
                 $.prompt.show('努力上传中......');
             },
             success: function(result) {
                 $.prompt.hidden();
-                if (result.findurl) {
+                var code = result.code;
+                if (code == 200) {
                     $.dialog.showMsgFuncLayer("提示", "上传成功",
                     function() {
                         $.dialog.hidden();
-                        window.location.href = "/" + result.findurl;
+                        window.location.href = basePath+"detail/" + result.data;
                     });
+                } else if(code == 403) {
+                    $.dialog.showMsgLayer("上传失败", "登录信息过期,请先登录", function() {
+                    	showSignIn();
+                    }, 1);
                 } else {
-                    $.dialog.showMsgLayer("上传失败", result.info + '[' + result.code + ']');
+                	$.dialog.showMsgLayer("上传失败", result.data);	
                 }
             },
-            error: function(XMLHttpRequest, textStatus, errorThrown) {
-                var obj = eval('(' + XMLHttpRequest.responseText + ')');
-                $.dialog.showMsgLayer("上传失败", obj.info + '[' + obj.code + ']');
+            error: function() {
+            	$.prompt.hidden();
+                $.dialog.showMsgLayer("上传失败", "服务器异常...");
             }
         });
     } else $(".upload_c_q_a_ipt").focus();
 }
+
+function isImageUrl(url) {
+	var re = /((https|http)?:\/\/)[^\s]+.(jpg|png|jpeg|gif)/gi;
+	return re.test(url);
+}
+
 var asyncupwait = false;
 function asyncloadimgover(surl, wris, result) {
     if (wris && wris.length) {

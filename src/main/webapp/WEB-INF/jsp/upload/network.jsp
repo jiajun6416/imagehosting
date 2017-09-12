@@ -16,15 +16,21 @@
 				<span>
 					<a href="upload/local">本地上传</a></span>上传图片到我的图片库</DIV>
 			<DIV class="upload_c">
+			<DIV class="upload_c">
 				<DIV class="upload_c_a">
-					<SPAN class="upload_c_a_a" style="font-size:14px">选择相册</SPAN>
-					<SPAN class="upload_c_a_b">
-						<select id="albums" style="border:none;height:28px;line-height:28px;width:100%;">
-							<option value>--------选择相册--------</option>
-							<option style="line-height:28px;color:#009900" value="1356442" selected="selected">222 (0)</option>
-							<option style="line-height:28px;color:#009900" value="1352520">默认相册 (9)</option></select>
-					</SPAN>
-					<input type="button" value="创建相册" onclick="createalbum()" class="cbtn upload_c_a_c_b_a_b"></DIV>
+					<SPAN class="upload_c_a_a" style="font-size: 14px">选择相册</SPAN>
+					 <SPAN class="upload_c_a_b" onclick="return false;"> 
+					 <select id="albums" style="border: none; height: 28px; line-height: 28px; width: 100%;">
+							<option value="0">--------选择相册--------</option>
+							<c:forEach var="album" items="${albumList}" >
+								<option style="line-height: 28px; color: #009900" value="${album.id}">
+									${album.name} (${album.imageSize})
+								</option>
+							</c:forEach>
+					</select>
+					</SPAN> 
+					<input type="button" value="创建相册" onclick="createalbum()" class="cbtn upload_c_a_c_b_a_b">
+				</DIV>
 				<DIV class="upload_c_b">
 					<DIV id="uploadcontainer">
 						<div class="upload_c_q">
