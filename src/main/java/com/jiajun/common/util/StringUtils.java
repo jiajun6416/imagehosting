@@ -384,7 +384,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
     
     public static void main(String[] args) {
     	String filename = "http://img3.imgtn.bdimg.com/it/u=808899193,2816343074&fm=200&gp=0.jpg";
-    	int index = filename.lastIndexOf("/");
+    	filename.lastIndexOf("/");
     	System.out.println(filename.substring(31));
     }
     

@@ -83,14 +83,4 @@ public class DesEncryptDecrypt {
         return null;
     }
 	
-	public static void main(String[] args) {
-		try {
-			String encrypt = DesEncryptDecrypt.getInstance().encrypt("");
-			String decrypt = DesEncryptDecrypt.getInstance().getInstance().decrypt(encrypt);
-			System.out.println(encrypt+"_"+decrypt);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
 }
