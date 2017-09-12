@@ -311,15 +311,23 @@ function addmorepic() {
     } else $("#morepicv").focus();
 }
 
-var asyncloadimgwait = false;
+$(".upload_c_q_a_ipt").focus();
+$(".upload_c_q_a_ipt").keypress(function(e) {
+	if(e.keyCode == 13) {
+		asyncloadimg();
+	}
+});
 
+
+var asyncloadimgwait = false;
 function asyncloadimg() {
     var url = $.trim($(".upload_c_q_a_ipt").val());
-    if(url == null || url.lenth==0) {
+    if(url == null || url.length==0) {
     	return false;
     } 
     if(!isImageUrl(url)) {
-    	$.dialog.showMsgFuncLayer("提示", "网址错误, 只支持JPG、JPEG、GIF、PNG格式图片");
+    	$.dialog.showMsgFuncLayer("提示", "网址错误, 请以http/https开头, 且支持JPG、JPEG、GIF、PNG格式图片");
+    	$(".upload_c_q_a_ipt").focus();
     	return false;
     }
     if (url.length) {
@@ -344,7 +352,7 @@ function asyncloadimg() {
                     	showSignIn();
                     }, 1);
                 } else {
-                	$.dialog.showMsgLayer("上传失败", result.data);	
+                	$.dialog.showMsgLayer("上传失败", result.message);	
                 }
             },
             error: function() {
@@ -356,7 +364,7 @@ function asyncloadimg() {
 }
 
 function isImageUrl(url) {
-	var re = /((https|http)?:\/\/)[^\s]+.(jpg|png|jpeg|gif)/gi;
+	var re = /((https|http):\/\/)[^\s]+\.(jpg|png|jpeg|gif)/gi;
 	return re.test(url);
 }
 

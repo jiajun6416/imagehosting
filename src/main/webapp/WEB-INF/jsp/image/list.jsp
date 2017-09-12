@@ -48,7 +48,7 @@
     	</c:forEach>
      </DIV>
 	
-	<form action="list/${album.id}" method="get">
+	<form action="list/${album.id}" method="GET">
 		<input type="hidden" name="currentPage" value="${page.currentPage}">
 		<input type="hidden" name="pageSize" value="${page.pageSize}">
 	</form>   

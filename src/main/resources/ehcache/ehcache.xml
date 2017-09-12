@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd" updateCheck="false">
+       <diskStore path="../ehcache/ehcache" />
+		
+		<!-- 默认cache对象 -->
+		<defaultCache 
+			maxElementsInMemory="1000" 
+			maxElementsOnDisk="0"
+			eternal="false" 
+			overflowToDisk="false" 
+			diskPersistent="false"
+			timeToLiveSeconds="300" 
+			timeToIdleSeconds="300"
+			diskExpiryThreadIntervalSeconds="120"
+			memoryStoreEvictionPolicy="LRU"/>
+<!-- 
+
+	timeToLiveSeconds：设置缓存最长存活时间, 设置为0表示永不清除
+	timeToIdleSeconds：缓存闲置多长时间没有访问会被清除, 为0时候表示不会因为闲置被清除,以livetime为准, idle time 必须设置小于 live time才有意义
+
+	name：Cache的唯一标识  
+	maxElementsInMemory：内存中最大缓存对象数  
+	maxElementsOnDisk：磁盘中最大缓存对象数，若是0表示无穷大  
+	eternal：Element是否永久有效，一但设置了true，timeout将不起作用  
+	overflowToDisk：配置此属性，当内存中Element数量达到maxElementsInMemory时，Ehcache将会Element写到磁盘中  
+	diskPersistent：是否缓存虚拟机重启期数据  
+	diskExpiryThreadIntervalSeconds：磁盘失效线程运行时间间隔，默认是120秒  
+	diskSpoolBufferSizeMB：这个参数设置DiskStore（磁盘缓存）的缓存区大小。默认是30MB。每个Cache都应该有自己的一个缓冲区  
+	memoryStoreEvictionPolicy：当达到maxElementsInMemory限制时，Ehcache将会根据指定的策略去清理内存。默认策略是LRU（最近最少使用）。你可以设置为FIFO（先进先出）或是LFU（较少使用）
+ -->
+		<cache name="album"
+			maxElementsInMemory="1000" 
+			maxElementsOnDisk="0"
+			eternal="false" 
+			overflowToDisk="false" 
+			diskPersistent="false"
+			timeToLiveSeconds="300" 
+			timeToIdleSeconds="300"
+			diskExpiryThreadIntervalSeconds="120"
+			memoryStoreEvictionPolicy="LRU"/>
+
+		<cache name="image"
+			maxElementsInMemory="1000" 
+			maxElementsOnDisk="0"
+			eternal="false" 
+			overflowToDisk="false" 
+			diskPersistent="false"
+			timeToLiveSeconds="300" 
+			timeToIdleSeconds="300"
+			diskExpiryThreadIntervalSeconds="120"
+			memoryStoreEvictionPolicy="LRU"/>
+			
+	<!-- shiro authorization cache对象 -->
+	<!-- 	<cache name="authorizationCache"
+			maxElementsInMemory="1000" 
+			maxElementsOnDisk="0"
+			eternal="false" 
+			overflowToDisk="false" 
+			diskPersistent="false"
+			timeToLiveSeconds="300" 
+			timeToIdleSeconds="300"
+			diskExpiryThreadIntervalSeconds="120"
+			memoryStoreEvictionPolicy="LRU"/> -->
+		
+	<!-- spring cache对象 -->
+	<!-- <cache name="menu"
+			maxElementsInMemory="1000" 
+			maxElementsOnDisk="0"
+			eternal="false" 
+			overflowToDisk="false" 
+			diskPersistent="false"
+			timeToLiveSeconds="300" 
+			timeToIdleSeconds="300"
+			diskExpiryThreadIntervalSeconds="120"
+			memoryStoreEvictionPolicy="LRU"/> -->
+	
+</ehcache>

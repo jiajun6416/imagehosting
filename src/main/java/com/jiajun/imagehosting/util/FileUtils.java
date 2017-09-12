@@ -15,7 +15,6 @@ public class FileUtils {
 		for(int i=0; i<16; i++) {
 			str+=hexDigits[random.nextInt(15)];
 		}
-		System.out.println(str);
 		return str;
 	}
 }

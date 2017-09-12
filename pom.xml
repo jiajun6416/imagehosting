@@ -8,11 +8,11 @@
 	</parent>
 	<artifactId>imagehosting</artifactId>
 	<packaging>war</packaging>
-	
+
 	<properties>
 		<httpclient.version>4.4.1</httpclient.version>
 	</properties>
-	
+
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -135,6 +135,16 @@
 			</exclusions>
 		</dependency>
 
+		<!-- ehcache -->
+		<dependency>
+			<groupId>org.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>net.sf.ehcache</groupId>
+		    <artifactId>ehcache-core</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<!-- 依赖的插件 , 运行 tomcat7:redeploy -->
@@ -146,7 +156,7 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<configuration>
 					<!-- 远端tomcat的后台管理入口 -->
-					<url>http://106.15.95.230:8080/manager/text</url>
+					<url>http://106.15.95.230:80/manager/text</url>
 					<path>/picture</path>
 					<username>deployer</username>
 					<password>deployer</password>

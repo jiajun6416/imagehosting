@@ -105,7 +105,7 @@ function impeach(t, s) {
     $.dialog.showIframeDialog(550, '举报', '<iframe frameborder="0" width="500" height="270" marginheight="0" marginwidth="0" scrolling="no" src="/impeach?photo=' + s + '"></iframe>');
 }
 function showSignIn() {
-    window.location.href = $(".header_nav a:contains('登录')").attr("href");
+    window.location.href = basePath+"/index";
 }
 function isScrollBottom() {
     return $(document).scrollTop() + $(window).height() >= $(document).height() - ( !! navigator.userAgent.match(/AppleWebKit.*Mobile.*/) || !!navigator.userAgent.match(/AppleWebKit/) ? 200 : 0);

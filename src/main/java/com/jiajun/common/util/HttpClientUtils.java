@@ -173,9 +173,6 @@ public class HttpClientUtils {
 		} catch (Exception e) {
 			throw e;
 		} finally {
-			if(response != null) {
-				response.close();
-			}
 		}
 		return null;
 	}

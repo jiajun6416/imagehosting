@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
 		</commentGenerator>
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
 			connectionURL="jdbc:mysql://jiajundb.mysql.rds.aliyuncs.com/imagehosting"
-			userId="root" password="Jiajun_123" />
+			userId="" password="" />
 
 		<!-- 实体 -->
 		<javaModelGenerator targetPackage="com.jiajun.imagehosting.image.domain"

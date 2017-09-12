@@ -73,4 +73,18 @@
 		</tx:attributes>
 	</tx:advice>
 	
+	
+	<cache:annotation-driven cache-manager="cacheManager" />
+	
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="ehcacheManager" />
+		<property name="transactionAware" value="true"/>
+	</bean>
+
+	<bean id="ehcacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:ehcache/ehcache.xml" />
+		<property name="cacheManagerName" value="springEhcacheManager"/>
+	</bean>
+	
+	
 </beans>

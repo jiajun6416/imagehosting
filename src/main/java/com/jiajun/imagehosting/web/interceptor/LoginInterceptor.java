@@ -1,6 +1,8 @@
 package com.jiajun.imagehosting.web.interceptor;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -30,8 +32,8 @@ public class LoginInterceptor implements HandlerInterceptor{
 		if(user == null) {
 			String username = null;
 			String password = null;
-			String selectedAlbum = null;
 			Cookie[] cookies = request.getCookies();
+			Map<String, String> cookieAlbumId = new HashMap<>();
 			for (Cookie cookie : cookies) {
 				if("username".equals(cookie.getName())) {
 					username = cookie.getValue();
@@ -39,16 +41,16 @@ public class LoginInterceptor implements HandlerInterceptor{
 				if("password".equals(cookie.getName())) {
 					password = cookie.getValue();
 				}
-				if("selected_album".equals(cookie.getName())) {
-					selectedAlbum = cookie.getValue();
+				if(cookie.getName().startsWith("selected_album_")) {
+					cookieAlbumId.put(cookie.getName(), cookie.getValue());
 				}
 			}
 			if(StringUtils.isNotEmpty(username) && StringUtils.isNotEmpty(password)) {
 				user = userService.getByUsernameAndPw(username, password);
 				if(user != null) {
 					session.setAttribute(Constant.SESSION_USER_KEY, user);
-					if(StringUtils.isNotEmpty(selectedAlbum)) {
-						session.setAttribute(Constant.SESSION_ALBUM_SELECTED, Integer.valueOf(selectedAlbum));
+					if(StringUtils.isNotEmpty(cookieAlbumId.get("selected_album_"+user.getUsername()))) {
+						session.setAttribute(Constant.SESSION_ALBUM_SELECTED, Integer.valueOf(cookieAlbumId.get("selected_album_"+user.getUsername())));
 					}
 				}
 				return true;

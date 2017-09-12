@@ -15,7 +15,7 @@ public class ImageEntity implements java.io.Serializable{
 	 */
 	public String getImageZoomUrl() {
 		if(StringUtils.isNotEmpty(httpUrl)) {
-			return ImageProcess.getOssZoomImageUrl(httpUrl);
+			return ImageProcess.doZoomProcess(httpUrl);
 		} else {
 			return "";
 		}

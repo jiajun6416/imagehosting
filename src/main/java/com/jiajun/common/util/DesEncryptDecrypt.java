@@ -19,7 +19,7 @@ import javax.crypto.spec.DESKeySpec;
 public class DesEncryptDecrypt {
 	
 	/*key需要大于八位*/
-	private static final String key = "jiajun123";
+	private static final String key = "";
 	
 	private static DesEncryptDecrypt ourInstance = new DesEncryptDecrypt();
     

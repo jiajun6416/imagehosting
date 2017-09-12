@@ -9,7 +9,13 @@ public class ImageProcess {
 	//缩略图大小
 	private static final int IMAGE_ZOOM_WIDTH = 300;
 	
-	public static String getOssZoomImageUrl(String originalUrl) {
+	
+	/**
+	 * 缩放处理, 默认是宽度300, 高度等比
+	 * @param originalUrl
+	 * @return
+	 */
+	public static String doZoomProcess(String originalUrl) {
 		return originalUrl+"?x-oss-process=image/resize,w_"+IMAGE_ZOOM_WIDTH;
 	}
 	

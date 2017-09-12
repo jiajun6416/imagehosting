@@ -50,8 +50,9 @@
 		</DIV>
 	</DIV>
 	<script type="text/javascript" src="static/js/jquery.cookie.js"></script>
-	<SCRIPT language="javascript" src="static/js/userupload.js?t=160621" type="text/javascript"></SCRIPT>
-	<SCRIPT language="javascript" src="static/js/useralbum.js?v=160705" type="text/javascript"></SCRIPT>
+	<SCRIPT language="javascript" src="static/js/userupload.js?t=160622" type="text/javascript"></SCRIPT>
+	<SCRIPT language="javascript" src="static/js/useralbum.js?v=160703" type="text/javascript"></SCRIPT>
+		<LINK href="static/css/useralbum.css?v=160705" rel="stylesheet" type="text/css" />
 	<%@include file="../foot.jsp" %>
 </BODY>
 

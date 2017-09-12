@@ -2,7 +2,10 @@ package com.jiajun.imagehosting.web.controller;
 
 
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -23,7 +26,6 @@ import org.springframework.web.util.HtmlUtils;
 
 import com.jiajun.common.base.controller.BaseController;
 import com.jiajun.common.bo.Result;
-import com.jiajun.common.util.HttpClientUtils;
 import com.jiajun.common.util.StringUtils;
 import com.jiajun.imagehosting.domain.AlbumEntity;
 import com.jiajun.imagehosting.domain.ImageEntity;
@@ -63,6 +65,7 @@ public class ImageController extends BaseController{
 			return Result.error("文件格式错误");
 		}
 		String filename = file.getOriginalFilename();
+		filename = HtmlUtils.htmlEscape(filename);
 		String fileType = filename.substring(filename.lastIndexOf(".")+1);
 		BufferedImage image = ImageIO.read(file.getInputStream());
 		if(image == null) {
@@ -87,6 +90,7 @@ public class ImageController extends BaseController{
 		imageEntity.setAlbumId(album.getId());
 		String uniqueName = FileUtils.generatorStoreName();
 		imageEntity.setUniqueName(uniqueName);
+
 		//上传到oss服务器
 		String httpUrl = ossHandler.uploadFile(path, uniqueName+"."+fileType, file.getInputStream());
 		
@@ -103,15 +107,44 @@ public class ImageController extends BaseController{
 	public Result uploadNetworkImage(String fileurl, HttpSession session) throws Exception{
 		// 判断是image路径
 		if(StringUtils.isImageUrl(fileurl)) {
-			InputStream is = HttpClientUtils.getImageStream(fileurl);
-			UserEntity user = this.getLoginUser(session);
-			Integer album = this.getSelectedAlbum(session);
+			BufferedImage imageBf = ImageIO.read( new URL(fileurl));
+			if(imageBf == null) {
+				return Result.fail("上传非图片内容!");
+			}
 			String fileType = fileurl.substring(fileurl.lastIndexOf(".")+1);
+			ImageEntity image = new ImageEntity();
+			
+			image.setFileType(fileType);
+			image.setHeight(imageBf.getHeight());
+			image.setWidth(imageBf.getHeight());
+
+			UserEntity user = this.getLoginUser(session);
+			String uniqueName = FileUtils.generatorStoreName();
+			Integer albumId = this.getSelectedAlbum(session);
+			String fileName = fileurl.substring(fileurl.lastIndexOf("/")+1, fileurl.length()-4);
+			fileName = HtmlUtils.htmlEscape(fileName);
+		    
+			image.setAlbumId(albumId);
+			image.setFileName(fileName);
+			image.setUniqueName(uniqueName);
+			
+			//BufferedImage 转 InputStream
+			ByteArrayOutputStream os = new ByteArrayOutputStream();  
+			ImageIO.write(imageBf, fileType, os);  
+			InputStream is = new ByteArrayInputStream(os.toByteArray());  
+
+			image.setSize((long) is.available());
+			
+			String path = user.getUsername()+"/"+albumService.getById(albumId).getName()+"/";
+			String httpUrl = ossHandler.uploadFile(path, uniqueName+"."+fileType, is);
+			image.setHttpUrl(httpUrl);
+			imageService.save(image);
+			
+			return Result.success(uniqueName);
 			
 		} else {
 			return Result.fail("非图片资源链接");
 		}
-		return Result.success(null);
 	}
 	
 	@RequestMapping("detail/{uniqueName}")
