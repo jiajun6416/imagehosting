@@ -19,7 +19,6 @@ import javax.crypto.spec.DESKeySpec;
 public class DesEncryptDecrypt {
 	
 	/*key需要大于八位*/
-	private String key;
 	
 	private static DesEncryptDecrypt ourInstance;
     
@@ -37,7 +36,6 @@ public class DesEncryptDecrypt {
 	private Cipher ecipher,dcipher;
 
     private DesEncryptDecrypt(String key){
-    	this.key = key;
         DESKeySpec dks;
         try {
             dks = new DESKeySpec(key.getBytes());
