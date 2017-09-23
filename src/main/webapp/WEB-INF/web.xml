@@ -40,7 +40,7 @@
   </listener>
   <servlet>
     <servlet-name>springmvc</servlet-name>
-    <servlet-class>org.springframework.web.servlet.CustomDispatcherServlet</servlet-class>
+    <servlet-class>com.jiajun.imagehosting.web.CustomDispatcherServlet</servlet-class>
     <init-param>
       <param-name>contextConfigLocation</param-name>
       <param-value>classpath:spring/applicationcontext-mvc.xml</param-value>
