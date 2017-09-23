@@ -10,6 +10,7 @@ public class ImageProcess {
 	private static final int IMAGE_ZOOM_WIDTH = 300;
 	
 	
+	
 	/**
 	 * 缩放处理, 默认是宽度300, 高度等比
 	 * @param originalUrl

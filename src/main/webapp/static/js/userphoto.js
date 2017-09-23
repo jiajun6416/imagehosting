@@ -31,8 +31,8 @@ var loadover = function() {
                 "width": "16px",
                 "height": "18px",
                 "overflow": "hidden",
-                "background": "#fff url(static/image/bg.png) no-repeat -321px -535px",
-                "_background-image": "url(static/image/bg.gif)"
+                "background": "#fff url("+basePath+"static/image/bg.png) no-repeat -321px -535px",
+                "_background-image": "url("+basePath+"static/image/bg.gif)"
             }).attr({
                 "href": "###",
                 "id": "imgrotateleft",
@@ -50,8 +50,8 @@ var loadover = function() {
                 "width": "16px",
                 "height": "18px",
                 "overflow": "hidden",
-                "background": "#fff url(static/image/bg.png) no-repeat -425px -535px",
-                "_background-image": "url(static/image/bg.gif)"
+                "background": "#fff url("+basePath+"static/image/bg.png) no-repeat -425px -535px",
+                "_background-image": "url("+basePath+"static/image/bg.gif)"
             }).attr({
                 "href": "###",
                 "id": "imgrotateright",

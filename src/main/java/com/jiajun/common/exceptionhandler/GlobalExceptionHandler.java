@@ -37,7 +37,11 @@ public class GlobalExceptionHandler extends SimpleMappingExceptionResolver{
 			return null;
 		} else {
 			//http
-			return new ModelAndView().addObject("message", ex.getMessage());
+			ModelAndView modelAndView = new ModelAndView();
+			modelAndView.addObject("message", ex.getMessage());
+			String viewName = super.determineViewName(ex, request);
+			modelAndView.setViewName(viewName);
+			return modelAndView;
 		}
 	}
 

@@ -1,0 +1,70 @@
+<#compress >
+</body>
+</html>
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>${session_user_key.nickname}的${album.name}-相册详情</title>
+<#include 'common.html'>
+</head>
+<body>
+  	<#include 'head.html'>
+    <DIV class="container">
+     <DIV class="user">
+       <DIV class="user_nav">
+         <SPAN class="user_nav_a">
+           <a href="album">${session_user_key.nickname}</a>&gt; ${album.name}</SPAN>
+         <span class="user_nav_b" id="create_a" style="margin-top:4px">
+			<b>每页显示:</b>
+			<select id="sizeSelect" class="cbtn upload_c_a_c_b_a_b" style="background-color:#C0C0C0; width: 50px;"  >
+				<option value='25'>25</option>
+				<option value='50'>50</option>
+				<option value='75'>75</option>
+				<option value='100'>100</option>
+			</select>
+         </span>
+       </DIV>
+       <DIV class="container_photo_list user_photo_list" style>
+    	<#list page.list as image>
+	         <DIV class="c_p_l_col">
+	           <DIV class="c_p_l_c_i" id="box${image.id}" data-obj="a571a2ad5659baa8" pid="${image.id}">
+	             <DIV class="c_p_l_c_i_a" style="height: 200px;">
+	               <A href="${basePath}/detail/${image.uniqueName}" target="_blank">
+	                 <IMG alt="${image.fileName}" src="${image.imageZoomUrl}" onload="if(($(this).parents('.c_p_l_c_i_a').height()<500)&&($(this).height()!=$(this).parents('.c_p_l_c_i_a').height())){$(this).parents('.c_p_l_c_i_a').height($(this).height())};" /></A>
+	             </DIV>
+	             <DIV class="c_p_l_c_i_b">
+	               <A href="detail/${image.uniqueName}" target="_blank">${image.fileName}</A></DIV>
+	             <DIV class="c_p_l_c_i_c"></DIV>
+	             <DIV class="c_p_l_c_i_d">
+	               <span class="editor">编辑</span></DIV>
+	             <DIV class="c_p_l_c_i_e"></DIV>
+	           </DIV>
+	         </DIV>
+    	</#list>
+     </DIV>
+	
+	<form action="${basePath}/list/${album.id}" method="GET">
+		<input type="hidden" name="currentPage" value="${page.currentPage}">
+		<input type="hidden" name="pageSize" value="${page.pageSize}">
+	</form>   
+	<!-- 分页 -->
+    <@lib.pagination />
+    <script>
+    	var aid=${album.id};
+    	$("#sizeSelect").val(${page.pageSize});
+	  	$(function() {
+	  	    $("#sizeSelect").change(function() {
+				$("[name=pageSize]").val($(this).val());
+				$("input[name='currentPage']").val(1);
+				$("form:first").submit();
+    		})
+	  	});
+   </script>
+   </DIV>
+  <#include 'foot.html'>
+</body>
+  <SCRIPT language="javascript" src="${basePath}/static/js/exhibition_2.js" type="text/javascript"></SCRIPT>
+  <SCRIPT language="javascript" src="${basePath}/static/js/photolive.js" type="text/javascript"></SCRIPT>
+</html>
+</#compress>

@@ -13,65 +13,74 @@
 
 	<context:component-scan base-package="com.jiajun.imagehosting.web.controller" />
 
-	<!-- 使用默认的handler映射器和handler适配器 , 注意: 自定义转换器不能取名conversionService, mvc自带了 -->
-	<mvc:annotation-driven />
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<ref bean="stringHttpMessageConverter" />
+			<ref bean="jacksonHttpMessageConverter" />
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 
+	<bean id="stringHttpMessageConverter"
+		class="org.springframework.http.converter.StringHttpMessageConverter">
+		<constructor-arg index="0" value="UTF-8" />
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/html;charset=UTF-8</value>
+				<value>application/json;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="jacksonHttpMessageConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>application/json;charset=UTF-8</value>
+				<value>text/html;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+	
 	<!--静态资源的映射 -->
 	<mvc:resources mapping="/static/**" location="/static/" />
+	<mvc:resources mapping="/404.html" location="/404.html" />
 
-	<mvc:view-controller path="/" view-name="redirect:/upload/local" />
 	<mvc:view-controller path="/index" view-name="redirect:/upload/local" />
-
-
-	<!-- 配置SpringMVC的视图解析器 -->
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/jsp/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
-
-	<bean class="com.jiajun.common.exceptionhandler.GlobalExceptionHandler">
-		<!-- 这边只对http协议异常进行处理, ajax异常已经处理 -->
-		<property name="exceptionMappings">
+	<mvc:view-controller path="/" view-name="redirect:/upload/local" />
+	
+	<!-- FreeMarker属性配置 -->
+	<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="/WEB-INF/ftl"/>
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="freemarkerSettings">
 			<props>
-				<prop key="java.lang.exception">error</prop>
+				<!-- 为null时默认为空字符串-->
+				<prop key="classic_compatible">true</prop>
+				<prop key="template_update_delay">1 s</prop>
+				<prop key="datetime_format">yyyy/MM/dd HH:mm:ss</prop>
 			</props>
 		</property>
 	</bean>
 	
-	<!-- 拦截器 -->
-	<!-- <mvc:interceptors> <mvc:interceptor> <mvc:mapping path="/**"/> <bean 
-		class="com.jiajun.interceptor.ParamsInterceptor"/> </mvc:interceptor> </mvc:interceptors> -->
-
-	<!--编码设置 -->
-	<bean
-		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
-		<property name="messageConverters">
-			<list>
-				<bean
-					class="org.springframework.http.converter.StringHttpMessageConverter">
-					<property name="supportedMediaTypes">
-						<list>
-							<value>text/html;charset=UTF-8</value>
-							<value>application/json;charset=UTF-8</value>
-						</list>
-					</property>
-				</bean>
-				<bean
-					class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-					<property name="supportedMediaTypes">
-						<list>
-							<value>text/html;charset=UTF-8</value>
-							<value>application/json;charset=UTF-8</value>
-						</list>
-					</property>
-				</bean>
-			</list>
+	 <!-- 配置freeMarker视图解析器 -->    
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="contentType" value="text/html; charset=utf-8"/>    
+    	<property name="order" value="0"/>
+    	<property name="cache" value="true"/>
+    	<property name="suffix" value=".html" />  
+		<!-- 可以获得request.contextPath -->
+		<property name="requestContextAttribute" value="request" />  	
+    </bean>
+	
+	
+	<bean class="com.jiajun.common.exceptionhandler.GlobalExceptionHandler">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.Exception">error</prop>
+			</props>
 		</property>
 	</bean>
 
-
-	<!-- 上传拦截，如最大上传值及最小上传值 -->
+	<!-- 文件上传解析器，可以设置上传文件属性 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize">
@@ -98,7 +107,7 @@
 	        <mvc:exclude-mapping path="/**/*.jpg"/>
 	        <mvc:exclude-mapping path="/**/*.ico"/>
 	        <mvc:exclude-mapping path="/**/*.swf"/>
-			<bean class="com.jiajun.imagehosting.web.interceptor.LoginInterceptor"/>
+			<bean class="com.jiajun.imagehosting.web.LoginInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
 	

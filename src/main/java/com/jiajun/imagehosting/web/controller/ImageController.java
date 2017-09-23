@@ -121,6 +121,9 @@ public class ImageController extends BaseController{
 			UserEntity user = this.getLoginUser(session);
 			String uniqueName = FileUtils.generatorStoreName();
 			Integer albumId = this.getSelectedAlbum(session);
+			if(albumId == 0) {
+				return Result.fail("请选择相册");
+			}
 			String fileName = fileurl.substring(fileurl.lastIndexOf("/")+1, fileurl.length()-4);
 			fileName = HtmlUtils.htmlEscape(fileName);
 		    

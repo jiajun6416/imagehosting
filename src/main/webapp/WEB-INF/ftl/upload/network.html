@@ -1,0 +1,48 @@
+<#compress>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<TITLE>上传网络图片 - imagehosting</TITLE>
+<#include 'common.html'>
+<LINK rel="stylesheet" href="${basePath}/static/css/useralbum.css"  type="text/css" />
+</head>
+<BODY>
+	<#include 'head.html'>
+	<DIV class="container">
+		<DIV class="upload" style="margin-top:80px;">
+			<DIV class="upload_t">
+				<span>
+					<a href="${basePath}/upload/local">本地上传</a></span>上传图片到我的图片库</DIV>
+			<DIV class="upload_c">
+			<DIV class="upload_c">
+				<@lib.selectAlbum />
+				<DIV class="upload_c_b">
+					<DIV id="uploadcontainer">
+						<div class="upload_c_q">
+							<div class="upload_c_q_a">请输入网址：
+								<input type="text" class="upload_c_q_a_ipt">
+								<input type="button" class="upload_c_q_a_btn cbtn" value="上传" onclick="asyncloadimg()">
+							</div>
+						</div>
+					</DIV>
+					<div class="upload_c_b_a">
+						<div style="width:700px;height:40px;display:inline-block">
+							<div class="upload_c_q_a" style="text-align:left;display:none">继续添加：
+								<input type="text" id="morepicv" style="width:400px;height:34px" />
+								<input type="button" value="确定" class="cbtn" onclick="addmorepic()" style="width:100px" />
+							</div>
+						</div>
+						<input type="button" value="开始上传" class="cbtn" id="uploadbtn" /></div>
+				</DIV>
+				<DIV class="upload_c_c">温馨提示：图片格式支持JPG、JPEG、GIF、PNG；一次可添加上传300张图片，单张图片不可超过10M。</DIV>
+			</DIV>
+		</DIV>
+	</DIV>
+	<#include 'foot.html'>
+</BODY>
+<script type="text/javascript" src="${basePath}/static/js/jquery.cookie.js"></script>
+<SCRIPT type="text/javascript" src="${basePath}/static/js/userupload.js" ></SCRIPT>
+<SCRIPT type="text/javascript" src="${basePath}/static/js/useralbum.js"></SCRIPT>
+</HTML>
+</#compress>

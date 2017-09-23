@@ -18,6 +18,7 @@ public class BaseDaoImpl extends  SqlSessionDaoSupport implements BaseDao {
 	private static final String DEFAULT_PAGE_COUNT_STATEMENT = "selectPageCount";
 	private static final String DEFAILT_PAGE_LIST_STATEMENT = "selectPageList";
 	
+	
 	@Override
 	@Autowired
 	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {

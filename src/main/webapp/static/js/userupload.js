@@ -21,19 +21,10 @@ $('#albums').change(function() {
 	var albumId = $(this).val();
 	d_album = albumId;
 	
-	if(albumId == 0) {
-		$.cookie('selected_album_'+user, 0, {
-			expires : 30, path:'/'
-		});
-		return;
-	}
     $.post(basePath+'album/selected', 
     		{"albumId": albumId},
 		    function(result) {
 		        if (result.code == 200) {
-/*		            pri_album = t.type;
-		            window.location.reload();
-		            setcookie('pri_album', t.type);  */
 		        	//存储cookie
 		    		$.cookie('selected_album_'+user, albumId, {
 		    			expires : 30, path:'/'
@@ -321,6 +312,10 @@ $(".upload_c_q_a_ipt").keypress(function(e) {
 
 var asyncloadimgwait = false;
 function asyncloadimg() {
+	if($('#albums').val() == 0) {
+		$.dialog.showMsgFuncLayer("提示", "请选择一个相册再上传");
+		return;
+	}
     var url = $.trim($(".upload_c_q_a_ipt").val());
     if(url == null || url.length==0) {
     	return false;

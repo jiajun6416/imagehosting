@@ -170,7 +170,6 @@ public class AlbumController extends BaseController{
 			return Result.success(count);
 		} else {
 			return Result.error("非法操作!");
-			
 		}
 	}
 	
@@ -178,7 +177,7 @@ public class AlbumController extends BaseController{
 	@ResponseBody
 	public Result setSelectedAlbum(int albumId, HttpSession session, HttpServletResponse response) throws Exception{
 		UserEntity user = this.getLoginUser(session);
-		if(hasAlbum(user.getId(), albumId)) {
+		if(albumId == 0 || hasAlbum(user.getId(), albumId)) {
 			//将用户行为,选中的album存储在session中
 			session.setAttribute(Constant.SESSION_ALBUM_SELECTED, albumId);
 			return Result.success(null);
@@ -204,5 +203,4 @@ public class AlbumController extends BaseController{
 			throw new Exception("非法操作");
 		}
 	}
-
 }

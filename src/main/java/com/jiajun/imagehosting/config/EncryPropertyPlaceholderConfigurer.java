@@ -18,9 +18,9 @@ public class EncryPropertyPlaceholderConfigurer extends PropertyPlaceholderConfi
 	public void setKey(String key) {
 		this.key = key;
 	}
-
+	
 	private static List<String> encryPropers  = new ArrayList<>();
-
+	
 	static {
 		encryPropers.add("accessKeyId");
 		encryPropers.add("accessKeySecret");
