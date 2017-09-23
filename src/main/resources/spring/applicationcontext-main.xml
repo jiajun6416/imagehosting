@@ -37,7 +37,7 @@
 	
 	<!-- 使用加密的占位符解析, key是加解密的公key -->
 	<bean class="com.jiajun.imagehosting.config.EncryPropertyPlaceholderConfigurer">
-		<property name="key" value="jiajun123"/>
+		<property name="key" value=""/>
 		<property name="locations" value="classpath:config/*.properties"/>
 	</bean>
 	
